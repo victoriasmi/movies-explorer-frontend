@@ -1,0 +1,15 @@
+.footer__year{
+  font-size: 13px;
+  line-height: 15.73px;
+  font-weight: 400;
+  color: #000000;
+  align-self: center;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .footer__year {
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+}

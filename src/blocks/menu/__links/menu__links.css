@@ -1,0 +1,7 @@
+.menu__links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  text-align: center;
+}

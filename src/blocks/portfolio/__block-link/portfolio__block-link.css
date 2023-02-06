@@ -1,0 +1,14 @@
+.portfolio__block-link {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 19px;
+  border-bottom: 1px solid #E8E8E8;
+  max-width: 1140px;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.portfolio__block-link:nth-child(3) {
+  padding-bottom: 0;
+  border-bottom: none;
+}

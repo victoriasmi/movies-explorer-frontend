@@ -1,0 +1,25 @@
+.auth__title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29.05px;
+  color: #000000;
+  padding-top: 40px;
+  align-self: flex-start;
+  padding-bottom: 40px;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .auth__title {
+    /* font-size: 18px;
+    line-height: 21.78px;
+    padding-top: 25px;
+    padding-bottom: 75px; */
+  }
+}
+
+@media (max-width: 480px) {
+  .auth__title {
+   align-self: center;
+  }
+}

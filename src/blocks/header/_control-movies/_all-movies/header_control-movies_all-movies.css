@@ -1,0 +1,5 @@
+.header_control-movies_all-movies  {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+}

@@ -1,0 +1,24 @@
+.navigation {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  /* justify-content: center;
+  align-items: center; */
+  padding: 0;
+  /* align-content:space-between; */
+  margin-top: auto;
+  margin-bottom: 30px;
+}
+
+/* @media (max-width: 768px) {
+  .navigation__link {
+    height: 36px;
+    width: 96px;
+  }
+} */
+
+@media (max-width: 480px) {
+  .navigation {
+    gap: 6px;
+  }
+}

@@ -1,0 +1,6 @@
+.about-project__block-graphics {
+  display: flex;
+  flex-direction: row;
+  gap:0;
+  max-width: 1140;
+}

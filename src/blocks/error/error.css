@@ -1,0 +1,19 @@
+.error {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12.1px;
+  color:#EE3465;
+  display: block;
+  min-height: 12px;
+  padding-top: 6px;
+}
+
+.error:last-of-type {
+  min-height: 12px;
+}
+
+@media (max-width: 767px) {
+  .error {
+    max-width: 238px;
+  }
+}

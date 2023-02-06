@@ -1,0 +1,18 @@
+.auth__logo {
+    size: 38px;
+    padding: 0;
+    margin: 0;
+    align-self: flex-start;
+  }
+  
+  @media (max-width: 879px) {
+    .auth__logo {
+    }
+  }
+
+
+  @media (max-width: 480px) {
+    .auth__logo {
+     align-self: center;
+    }
+  }

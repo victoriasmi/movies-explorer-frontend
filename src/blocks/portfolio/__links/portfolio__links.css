@@ -1,0 +1,8 @@
+.portfolio__links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1140px;
+  flex-grow: 1;
+  margin-bottom: 125px;
+}

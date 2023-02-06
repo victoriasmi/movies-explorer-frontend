@@ -1,0 +1,17 @@
+.error-page__error-number{
+  text-align: center;
+  align-self: center;
+  font-weight: 400;
+  font-size: 140px;
+  line-height: 169.43px;
+  margin: 0;
+  padding: 0;
+  color:#000000;
+}
+
+@media (max-width: 480px) {
+  .error-page__error-number {
+    font-size: 80px;
+    line-height: 96.82px;
+  }
+}

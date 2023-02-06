@@ -1,0 +1,17 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  color: #FFFFFF;
+  padding: 15px auto 80px;
+  margin: 0;
+  text-align: center;
+  align-self: center;
+}
+
+/* @media (max-width: 767px) {
+  .auth {
+    min-width: 282px;
+    min-height: 322px;
+  }
+} */
+

@@ -1,0 +1,15 @@
+.auth__input-title {
+  margin: 0;
+  font-size: 10px;
+  line-height: 11.1px;
+  font-weight: 400;
+  border: none;
+  padding: 0;
+  color: #A0A0A0;
+  align-self: flex-start;
+}
+
+@media (max-width: 767px) {
+  .auth__input {
+  }
+}

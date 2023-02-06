@@ -1,0 +1,19 @@
+.loader__load-button {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.52px;
+  background-color: #FFFFFF;
+  color: #000000;
+  width: 320px;
+  height: 36px;
+  align-self: center;
+  margin: 50px auto 80px auto;
+  border: 1px solid #E8E8E8;
+  cursor: default;
+  border-radius: 10px;
+  padding: 0;
+}
+
+.loader__load-button:hover {
+  opacity: 20%;
+}

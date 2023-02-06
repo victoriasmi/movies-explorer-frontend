@@ -1,0 +1,6 @@
+.element__text{
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  justify-content: flex-start;
+}

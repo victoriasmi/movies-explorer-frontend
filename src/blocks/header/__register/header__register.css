@@ -1,0 +1,19 @@
+.header__register {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+  text-decoration: none;
+  color: #000000;
+}
+
+.header__text:hover{
+  opacity: 0.6;
+}
+
+@media (max-width: 480px) {
+  .header__register {
+    font-size: 10px;
+    line-height: 16px;
+  }
+}

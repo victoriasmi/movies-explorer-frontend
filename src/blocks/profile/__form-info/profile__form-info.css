@@ -1,0 +1,22 @@
+.profile__form-info{
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13.31px;
+  color: #000000;
+  text-align: right;
+  margin: 0;
+}
+
+/* @media (max-width: 768px) {
+  .error-page__error-text {
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+}
+
+@media (max-width: 480px) {
+  .error-page__error-text {
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+} */

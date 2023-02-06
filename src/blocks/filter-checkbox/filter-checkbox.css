@@ -1,0 +1,10 @@
+.filter-checkbox{
+  display: flex;
+  flex-direction: row;
+  border-left: 1px solid #E8E8E8;
+  gap: 14px;
+  /* max-height: 72px; */
+  /* padding: 0 29px 0 30px; */
+  align-items: center;
+  align-self: center;
+}

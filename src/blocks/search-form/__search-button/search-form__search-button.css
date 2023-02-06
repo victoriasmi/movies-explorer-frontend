@@ -1,0 +1,15 @@
+.search-form__search-button {
+  background-image: url(../../../images/searchButton.svg);
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  align-items: flex-end;
+  background-color: transparent;
+}
+
+.search-form__search-button:hover {
+  opacity: 0.6;
+  transition: 0.2s ease-out;
+}

@@ -1,0 +1,11 @@
+.auth__button_type_login {
+  opacity: 20%;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #000000;
+  cursor: default;
+}
+
+.auth__button_type_login:hover {
+  opacity: 20%;
+}

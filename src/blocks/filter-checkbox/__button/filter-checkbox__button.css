@@ -1,0 +1,14 @@
+.filter-checkbox__button{
+  background-image: url(../../../images/checkbox-active.svg);
+  width: 36px;
+  height: 23px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.search-form__search-button:hover {
+  opacity: 0.6;
+  transition: 0.2s ease-out;
+}
