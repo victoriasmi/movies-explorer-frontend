@@ -5,12 +5,13 @@
   font-size: 14px;
   line-height: 16.95px;
   font-weight: 500;
-  margin: 69px auto 16px auto;
+  margin: auto auto 16px auto;
   border: none;
   border-radius: 2px;
   min-height: 45px;
   text-align: center;
   cursor: pointer;
+
 }
 
 .auth__button:hover {

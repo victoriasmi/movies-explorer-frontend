@@ -41,12 +41,12 @@ export default function Register(props) {
             <input className="auth__input auth__form_type_register" id="password-input" type="password" name="password" />
             {/* // value={password ?? ""} onChange={handlePasswordChange} required /> */}
             <span className="password-input-error error"></span>
-            </form>
             <button className="auth__button auth__button_type_register" type="submit">Зарегистрироваться</button>
             <div className="auth__change-type">
               <p className="auth__change-type-text">Уже зарегистрированы?&nbsp;</p>
               <Link to="/signin" className="auth__change-type-link">Войти</Link>
             </div>
+            </form>
         </div>
       </div>
     </>

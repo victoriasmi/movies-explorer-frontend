@@ -7,8 +7,10 @@
   margin: 0 auto;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 300px) {
   .footer {
     padding: 0;
+    background-color: #FFFFFF;
+    max-width: 300px;
   }
 }

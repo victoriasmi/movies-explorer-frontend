@@ -17,3 +17,9 @@
 .loader__load-button:hover {
   opacity: 20%;
 }
+
+@media (max-width: 480px) {
+  .loader__load-button   {
+    width: 240px;
+  }
+}

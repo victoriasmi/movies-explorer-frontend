@@ -6,6 +6,7 @@
   max-width: 1140px;
   justify-content: space-between;
   margin: 0;
+  text-decoration: none;
 }
 
 .portfolio__block-link:nth-child(3) {

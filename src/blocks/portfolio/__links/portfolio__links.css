@@ -5,4 +5,7 @@
   max-width: 1140px;
   flex-grow: 1;
   margin-bottom: 125px;
+  text-decoration: none;
+  list-style-type: none; 
+  padding: 0;
 }
