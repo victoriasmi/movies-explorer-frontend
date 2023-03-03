@@ -19,8 +19,20 @@
 
 @media (max-width: 566px) {
   .search {
-    max-width: 300px;
+    /* max-width: 300px; */
     padding-bottom: 0;
+    justify-content: center;
       /* flex-wrap: wrap; */
   }
 }
+
+/* @media (max-width: 566px) {
+  .movies__finder {
+    /* max-width: 500px; */
+    /* justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 80px; */
+    /* flex-wrap: wrap; */
+  /* } */
+/* } */ 

@@ -1,0 +1,7 @@
+@media (max-width: 767px) {
+  .header__text_type_nav {
+    display: none;
+    visibility:hidden;
+    /* margin-bottom: 90px; */
+  }
+}

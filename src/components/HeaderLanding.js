@@ -16,11 +16,11 @@ export default function HeaderLanding() {
     <div>
       <header className="header">
         <div className="header__navi">
-          <img className="header__logo" src={logo} alt="логотип" />
+          <Link to="/" src={logo} alt="логотип"><img className="header__logo" to="/" src={logo} alt="логотип"/></Link>
           </div>
           <div className="header__auth">
-            <Link className="header__register" to="/signup" target="_blank">Регистрация</Link>
-            <Link className="header__login" to="/signin" target="_blank">Войти</Link>
+            <Link className="header__register" to="/signup">Регистрация</Link>
+            <Link className="header__login" to="/signin">Войти</Link>
           </div>
       </header>
     </div>

@@ -21,6 +21,6 @@
 
 @media (max-width: 767px) {
   .header__text {
-    display: none;
+    margin-bottom: 90px;
   }
 }

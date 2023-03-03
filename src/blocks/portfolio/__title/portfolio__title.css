@@ -5,6 +5,9 @@
   color: #A0A0A0;
   padding-bottom: 50px;
   border-bottom: 1px #E8E8E8;
+  /* margin: 0 auto 0 0; */
+  /* justify-self: left; */
+  text-align: left;
 }
 
 @media (max-width: 480px) {

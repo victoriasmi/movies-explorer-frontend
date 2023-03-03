@@ -1,7 +1,7 @@
-.popup_opened {
+.menu_opened {
   display: flex;
-  align-self: center;
-  justify-content: center;
+  /* align-self: center;
+  justify-content: center; */
   visibility: visible;
   opacity: 1;
   transition: opacity 1s;

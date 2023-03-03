@@ -11,14 +11,20 @@
   align-items: center;
 }
 
+@media (max-width: 1280px) {
+  .promo-banner {
+    margin: 0 40px;
+  }
+}
+
 @media (max-width: 768px) {
   .promo-banner {
-    max-width: 728px;
+    margin: 0 20px;
   }
 }
 
 @media (max-width: 320px) {
   .promo-banner {
-    max-width: 292px;
+    margin: 0 14px;
   }
 }

@@ -9,9 +9,8 @@ export default function Footer() {
       <div className="footer__bottom">
         <p className="footer__year">&copy; 2023</p>
         <div className="footer__links">
-          <Link className="footer__link" to="/signup">Яндекс.Практикум</Link> 
-          {/* не та ссылка  */}
-          <Link className="footer__link" to="/signup">Github</Link>
+          <Link className="footer__link" to="https://practicum.yandex.ru/">Яндекс.Практикум</Link> 
+          <Link className="footer__link" to="https://github.com/victoriasmi">Github</Link>
         </div>
       </div>
     </footer>

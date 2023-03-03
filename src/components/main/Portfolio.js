@@ -10,6 +10,7 @@ export default function Portfolio(props) {
 
   return (
     <section className="portfolio">
+      {/* <div className="portfolio__wrapper"> */}
       <p className="portfolio__title">Портфолио</p>
       <ul className="portfolio__links">
         <li className="portfolio__block">
@@ -31,6 +32,7 @@ export default function Portfolio(props) {
           </Link>
         </li>
       </ul>
+      {/* </div> */}
     </section>
   );
 

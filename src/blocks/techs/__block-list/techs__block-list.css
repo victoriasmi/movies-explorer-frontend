@@ -4,7 +4,8 @@
   gap: 10px;
   align-content: center;
   justify-content: center;
-  margin-bottom: 100px;
+  margin: 0 auto 100px auto;
+  max-width: 1140px;
 }
 
 @media (max-width: 768px) {
