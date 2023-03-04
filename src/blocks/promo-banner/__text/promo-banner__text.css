@@ -1,0 +1,23 @@
+.promo-banner__text {
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  text-align: center;
+  margin: 0;
+  max-width: 760px;
+  margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .promo-banner__text {
+    font-size: 40px;
+    line-height: 52px;
+  }
+}
+
+@media (max-width: 480px) {
+  .promo-banner__text{
+    font-size: 29px;
+    line-height: 37px;
+  }
+}

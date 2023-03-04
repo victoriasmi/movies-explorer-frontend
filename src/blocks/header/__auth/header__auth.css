@@ -1,0 +1,14 @@
+.header__auth {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 18px 0 18px 0;
+}
+
+
+@media (max-width: 480px) {
+  .header__auth {
+    gap: 14px;
+    margin: 0;
+  }
+} 

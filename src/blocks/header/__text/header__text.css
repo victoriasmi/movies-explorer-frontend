@@ -1,0 +1,26 @@
+.header__text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  text-align: center;
+  text-decoration: none;
+  align-self: baseline;
+  color: #000000;
+  width: 100px;
+  height: 32px;
+  background-color: #F9F9F9;
+  border-radius: 20px;
+}
+
+.header__text:hover{
+  opacity: 0.6;
+}
+
+@media (max-width: 767px) {
+  .header__text {
+    margin-bottom: 90px;
+  }
+}

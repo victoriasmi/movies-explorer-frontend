@@ -1,0 +1,30 @@
+.promo-banner {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  min-height: 493px;
+  background-color: #F5F5F5;
+  border-radius: 10px;
+  margin: 0 auto;
+  justify-content: center;
+  padding: 0;
+  align-items: center;
+}
+
+@media (max-width: 1280px) {
+  .promo-banner {
+    margin: 0 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .promo-banner {
+    margin: 0 20px;
+  }
+}
+
+@media (max-width: 320px) {
+  .promo-banner {
+    margin: 0 14px;
+  }
+}

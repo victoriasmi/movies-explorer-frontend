@@ -1,0 +1,21 @@
+.auth__container {
+  display: flex;
+  min-width: 396px;
+  /* min-height: 330px; */
+  flex-direction: column;
+  margin: 70px auto;
+}
+
+@media (max-width: 767px) {
+  .auth__container {
+    /* min-width: 282px;
+    min-height: 322px; */
+  }
+}
+
+@media (max-width: 480px) {
+  .auth__container {
+    min-width: 260px;
+  }
+}
+

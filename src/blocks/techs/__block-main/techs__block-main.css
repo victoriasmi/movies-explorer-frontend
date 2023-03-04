@@ -1,0 +1,21 @@
+.techs__block-main {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  max-width: 460px;
+  justify-content: center;
+  gap: 26px;
+  margin: 90px auto;
+}
+
+@media (max-width: 480px) {
+  .techs__block-main {
+    max-width: 364px;
+  }
+}
+
+@media (max-width: 480px) {
+  .techs__block-main {
+    max-width: 292px;
+  }
+}

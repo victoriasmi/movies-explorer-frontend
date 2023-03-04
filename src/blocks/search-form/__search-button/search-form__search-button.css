@@ -1,0 +1,29 @@
+.search-form__search-button {
+  background-image: url(../../../images/searchButton.svg);
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  align-self: center;
+  margin-right: 0;
+  background-color: transparent;
+  margin-right: 30px;
+}
+
+.search-form__search-button:hover {
+  opacity: 0.6;
+  transition: 0.2s ease-out;
+}
+
+@media (max-width: 768px) {
+  .search-form__search-button {
+    margin-right: 19px;
+  }
+}
+/* 
+@media (max-width: 480px) {
+  .search {
+    max-width: 300px;
+  }
+} */

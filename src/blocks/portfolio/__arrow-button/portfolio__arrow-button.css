@@ -1,0 +1,20 @@
+.portfolio__arrow-button {
+  align-self: center;
+  justify-self: right;
+  width: 29px;
+  height: 29px;
+}
+
+/* @media (max-width: 768px) {
+  .portfolio__link {
+    font-size: 28px;
+    line-height: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+} */

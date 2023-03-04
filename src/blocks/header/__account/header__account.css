@@ -1,0 +1,11 @@
+.header__account {
+  display: flex;
+  align-items: center;
+  margin: 18px 0;
+}
+
+@media (max-width: 480px) {
+  .header__account {
+    margin: 0;
+  }
+}

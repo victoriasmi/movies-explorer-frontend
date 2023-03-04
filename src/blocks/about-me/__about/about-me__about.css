@@ -1,0 +1,23 @@
+.about-me__about {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  color: #000000;
+  align-self: flex-start;
+  padding-bottom: 99px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .about-me__about {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-me__about {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

@@ -1,0 +1,15 @@
+.auth__change-type-link {
+  text-align: center;
+  align-self: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+  color:#2BE080;
+}
+
+@media (max-width: 480px) {
+  .auth__change-type-link {
+    font-size: 12px;
+    line-height: 14.52px;
+  }
+}

@@ -1,0 +1,34 @@
+.techs__list-element {
+  font-size: 400;
+  font-size: 14px;
+  line-height: 16.94px;
+  color: #000000;
+  text-align: center;
+  background-color: #E8E8E8;
+  align-items: center;
+  display: flex;
+  width: 90px;
+  height: 60px;
+  border-radius: 10px;
+  justify-content: center;
+  max-width: 1140px;
+  
+}
+
+@media (max-width: 768px) {
+  .techs__list-element {
+    font-size: 12px;
+    line-height: 14.52px;
+    width: 84px;
+    height: 57px;
+  }
+}
+
+@media (max-width: 480px) {
+  .techs__list-element {
+    font-size: 12px;
+    line-height: 14.52px;
+    width: 84px;
+    height: 57px;
+  }
+}

@@ -1,0 +1,10 @@
+.header__logo {
+  size: 38px;
+  align-self: center;
+  justify-self: center;
+}
+
+@media (max-width: 879px) {
+  .header__logo {
+  }
+}

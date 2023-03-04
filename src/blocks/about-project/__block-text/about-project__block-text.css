@@ -1,0 +1,7 @@
+.about-project__block-text {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  max-width: 550px;
+  margin: 0;
+}

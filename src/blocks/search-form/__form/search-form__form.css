@@ -1,0 +1,7 @@
+.search-form__form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* max-width: 913px; */
+  /* align-items: stretch; */
+}

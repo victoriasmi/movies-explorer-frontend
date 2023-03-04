@@ -1,0 +1,14 @@
+.search__input {
+  background-color: #F9F9F9;
+  border: none;
+  align-items: center;
+  /* padding: 0 auto;
+  margin: 0 auto; */
+  max-width: 913px;
+}
+
+@media (max-width: 768px) {
+.search__input {
+  max-width: 500px;
+}
+}

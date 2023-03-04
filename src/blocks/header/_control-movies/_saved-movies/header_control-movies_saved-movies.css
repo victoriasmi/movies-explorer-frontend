@@ -1,0 +1,5 @@
+.header_control-movies_saved-movies {
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+}

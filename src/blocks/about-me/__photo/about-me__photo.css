@@ -1,0 +1,27 @@
+.about-me__photo {
+  width: 270px;
+  height: 327px;
+  border-radius: 10px;
+  align-self: flex-start;
+  flex-shrink: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* .about-me__photo:hover + .profile__pic-edit {display: flex}  */
+
+
+@media (max-width: 767px) {
+  .about-me__photo {
+    width: 255px;
+    height: 307px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-me__photo {
+    width: 292px;
+    height: 352px;
+  }
+}

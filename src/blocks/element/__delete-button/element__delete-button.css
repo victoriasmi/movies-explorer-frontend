@@ -1,0 +1,14 @@
+.element__delete-button{
+  background-image: url(../../../images/deleteMovie.svg);
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.element__save-button:hover {
+  opacity: 0.6;
+  transition: 0.2s ease-out;
+}

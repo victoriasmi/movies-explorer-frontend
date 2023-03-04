@@ -1,0 +1,8 @@
+.auth__change-type {
+  display: flex;
+  flex-direction: row;
+  padding: 15px auto 80px;
+  margin: auto;
+  text-align: center;
+  align-self: center;
+}

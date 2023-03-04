@@ -1,0 +1,20 @@
+.header__navi {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 18px 0;
+}
+
+
+/* @media (max-width: 678px) {
+  .header__navi {
+    margin: 18px 30px;
+  }
+}
+
+@media (max-width: 480px) {
+.header__navi {
+  margin: 18px 14px;
+}
+} */

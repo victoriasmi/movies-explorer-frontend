@@ -1,0 +1,13 @@
+.movies {
+  display: flex;
+  flex-direction: column;
+  margin: 0 70px;
+  /* flex-grow: 1; */
+}
+
+@media (max-width: 768px) {
+  .movies {
+    margin: 0 30px;
+    /* margin-top: 80px; */
+  }
+}

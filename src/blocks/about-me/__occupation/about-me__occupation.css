@@ -1,0 +1,23 @@
+.about-me__occupation {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  color: #000000;
+  align-self: flex-start;
+  padding-bottom: 26px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .about-me__occupation {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .about-me__occupation {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}

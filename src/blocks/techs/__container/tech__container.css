@@ -1,0 +1,21 @@
+/* .tech__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-self: center;
+  margin: 0;
+  max-width: 1140px;
+  width:100vw;
+}
+
+@media (max-width: 768px) {
+  .tech__container {
+    max-width: 668px;
+  }
+}
+
+@media (max-width: 480px) {
+  .tech__container {
+    max-width: 284px;
+  }
+} */

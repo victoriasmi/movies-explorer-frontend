@@ -1,0 +1,9 @@
+.about-project__graphics {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-content: center;
+  margin-bottom: 110px;
+  max-width: 228px;
+  flex-grow: 1;
+}
