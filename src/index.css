@@ -41,6 +41,9 @@
 @import url(./blocks/auth/__change-type-link/auth__change-type-link.css);
 @import url(./blocks/error-page/error-page.css);
 @import url(./blocks/error-page/__error-number/error-page__error-number.css);
+@import url(./blocks/error/__filter/error__filter.css);
+@import url(./blocks/error/__filter/_type/_active/error__filter_type_active.css);
+@import url(./blocks/error/__filter-text/error__filter-text.css);
 @import url(./blocks/error-page/__error-text/error-page__error-text.css);
 @import url(./blocks/error-page/__link-back/error-page__link-back.css);
 @import url(./blocks/error-page/__container/error-page__container.css);
@@ -56,6 +59,7 @@
 @import url(./blocks/element/__top/element__top.css);
 @import url(./blocks/element/__save-button/element__save-button.css);
 @import url(./blocks/element/__save-button/_type/_active/element__save-button_type_active.css);
+@import url(./blocks/element/__delete-button/element__delete-button.css);
 @import url(./blocks/element/__title/element__title.css);
 @import url(./blocks/element/__duration/element__duration.css);
 @import url(./blocks/element/__image/element__image.css);
@@ -72,6 +76,7 @@
 @import url(./blocks/search/__block-input/search__block-input.css);
 @import url(./blocks/filter-checkbox/filter-checkbox.css);
 @import url(./blocks/filter-checkbox/__button/filter-checkbox__button.css);
+@import url(./blocks/filter-checkbox/__button/_type/_active/filter-checkbox__button_type_active.css);
 @import url(./blocks/filter-checkbox/__title/filter-checkbox__title.css);
 @import url(./blocks/promo/promo.css);
 @import url(./blocks/promo-banner/promo-banner.css);
@@ -122,7 +127,12 @@
 @import url(./blocks/profile/__links/profile__links.css);
 @import url(./blocks/profile/__link/profile__link.css);
 @import url(./blocks/profile/__link/_type/_red/profile__link_type_red.css);
+@import url(./blocks/profile/__form-info/_type/_active/profile__form-info_type_active.css);
+@import url(./blocks/profile/__link/_type/_active/profile__link_type_active.css);
 @import url(./blocks/movies/movies.css);
 @import url(./blocks/movies/__finder/movies__finder.css);
+@import url(./blocks/preloader__box/preloader__box.css);
+@import url(./blocks/preloader__box/_type/_active/preloader__box_type_active.css);
+
 
 @import url(./components/movies/Preloader.css);

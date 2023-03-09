@@ -1,0 +1,5 @@
+.profile__link_type_active {
+  visibility: visible;
+  display: flex;
+  justify-content: center;
+}

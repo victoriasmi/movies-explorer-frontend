@@ -10,14 +10,14 @@ class Auth {
     return res.json();
   }
 
-  register(email, password) {
+  register(name, email, password) {
     return fetch(`${this._baseUrl}/signup`, {
       method: 'POST',
       headers: {
         "Accept": "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ name, email, password })
     })
       .then((res) => {
         return res.json();
@@ -26,10 +26,10 @@ class Auth {
         console.log(data);
         return data;
       })
-      .then((data) => {
-        console.log(data);
-        return data;
-      })
+      // .then((data) => {
+      //   console.log(data);
+      //   return data;
+      // })
   }
 
   authorize(email, password) {
@@ -68,13 +68,14 @@ class Auth {
       .then((data) => {
         return data;
       })
-      .then((data) => {
-        return data;
-      })
+      // .then((data) => {
+      //   return data;
+      // })
   }
 }
 
 export const auth = new Auth({
-  baseUrl: 'api.diploma.project.nomoredomains.rocks',
+  // baseUrl: 'api.diploma.project.nomoredomains.rocks',
+  baseUrl: 'http://localhost:3000',
 });
 

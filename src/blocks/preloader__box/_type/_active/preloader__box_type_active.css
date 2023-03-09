@@ -1,0 +1,4 @@
+.preloader__box_type_active {
+  visibility: visible;
+  display: flex;
+}

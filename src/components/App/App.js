@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, Link, useHistory } from "react-router-dom";
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 // import Dashboard from './Dashboard';
 import HeaderMain from '../HeaderMain';
 import HeaderLanding from '../HeaderLanding';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Footer from '../Footer';
 import ErrorPage from './ErrorPage';
 import Main from '../main/Main';
@@ -17,6 +18,7 @@ import SavedMovies from '../savedMovies/SavedMovies'
 import Movies from '../movies/Movies';
 import { moviesApi } from '../../utils/MoviesApi'
 import { auth } from '../../utils/Auth'
+import { mainApi } from '../../utils/MainApi'
 // import SavedMovies from '../savedMovies/SavedMovies';
 // import ProtectedRoute from './ProtectedRoute';
 // import { CurrentUserContext } from '../contexts/CurrentUserContext';
@@ -32,52 +34,37 @@ export default function App() {
   // const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState([]);
   const [movies, setMovies] = useState([]);
+  const [filteredMovies, setfilteredMovies] = useState([]);
+  const [savedMovies, setSavedMovies] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [isError, setIsError] = useState(false);
+  // const [searchQuery, setSearchQuery] = useState("");
+  // const [filteredMovies, setfilteredMovies] = useState([]);
+
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const history = useHistory();
-
-
-
-  // console.log(isBurgerMenuOpen);
-
-  // function handleBurgerMenuClick() {
-  //   setIsBurgerMenuOpen(true);
-  // }
-
-
-  // function closeAllPopups() {
-  //   setIsBurgerMenuOpen(false);
-  // }
-
-  // useEffect(() => {
-  //   moviesApi.moviesApi()
-  //     .then((cardsData) => {
-  //       setMovies(cardsData.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, [])
+  // const [isSuccess, setIsSuccess] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       authInfo(token);
     }
-    // console.log(loggedIn);
   }, [])
 
-  useEffect(() => {
-    if (loggedIn) {
-      history.push("/");
-    }
-  }, [loggedIn, history]);
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     navigate("/movies");
+  //   }
+  // }, [loggedIn, navigate]);
 
   function authInfo(token) {
     auth.getInfo(token)
       .then((data) => {
         setEmail(data.data.email);
+        setName(data.data.name);
         setCurrentUser(data.data);
         setLoggedIn(true);
       })
@@ -86,20 +73,17 @@ export default function App() {
       })
   }
 
-
-  function handleRegisterSubmit(email, password) {
-    auth.register(email, password)
+  function handleRegisterSubmit(name, email, password) {
+    auth.register(name, email, password)
       .then((data) => {
         if (data.email) {
-          setIsSuccess(true);
-          history.push('/signin');
+          setLoggedIn(true);
+          navigate('/movies');
         } else {
-          setIsSuccess(false);
         }
       })
       .catch((err) => {
         console.log(err);
-        setIsSuccess(false);
       })
   }
 
@@ -109,58 +93,164 @@ export default function App() {
         if (res.token) {
           localStorage.setItem("token", res.token);
           setEmail(email);
-
           authInfo(res.token);
           getMovies();
-          history.push('/');
+          navigate('/movies');
         }
         else {
-          setIsSuccess(false);
         }
       })
       .catch((err) => {
         console.log(err);
-        setIsSuccess(false);
+      })
+  }
+
+  useEffect(() => {
+    mainApi.getProfileInfo()
+      .then((userData) => {
+        setCurrentUser(userData.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [])
+
+  function handleProfileUpdate(data) {
+    mainApi.editProfileInfo(data)
+      .then((data) => {
+        setEmail(data.email);
+        setName(data.name);
+        setCurrentUser(data);
+        window.location.reload();
+        navigate("/profile");
+      })
+      .catch((err) => {
+        console.log(err);
       })
   }
 
   function getMovies() {
-    moviesApi.moviesApi()
-      .then((cardsData) => {
-        setMovies(cardsData.data);
+    moviesApi.getMovies()
+      .then((movies) => {
+        setMovies(movies);
+        console.log(movies);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  function handleSaveMovieClick(movie) {
+    mainApi.saveMovie(movie)
+      .then((movie) => {
+        console.log(movie.data)
+        setSavedMovies([movie.data, ...savedMovies]);
+        console.log(savedMovies);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  useEffect(() => {
+    mainApi.getSavedMovies()
+      .then((movies) => {
+        setSavedMovies(movies.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [])
+
+  function handleDeleteMovieClick(movie) {
+    mainApi.deleteMovie(movie._id)
+    .then(() => {
+      setSavedMovies((movies) => movies.filter(m => { return m._id !== movie._id || m.id !== movie.id }))
+    })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  function handleUnsaveMovie(movie){
+    const unsavedMovie = savedMovies.filter(m => { return m.id === movie.id });
+    let movieToDelete = unsavedMovie.find(a => a._id);
+    console.log(movieToDelete._id);
+    handleDeleteMovieClick(movieToDelete);
+  }
+
+  function handleFilteredMovies(e) {
+    console.log(e);
+    setIsLoaded(false);
+    const result = movies.filter(movie => movie.nameRU.includes(e));
+    console.log(result);
+    if(result.length === 0){
+      setIsError(true);
+    } else setIsError(false);
+    setfilteredMovies(result);
+    setIsLoaded(true);
+  }
+
+  // function handleFilteredSavedMovies(e) {
+  //   console.log(e);
+  //   const result = savedMovies.filter(movie => movie.nameRU.includes(e));
+  //   console.log(result);
+  //   setfilteredMovies(result);
+  // }
+
+  useEffect(() => {
+    moviesApi.getMovies()
+      .then((movies) => {
+        setMovies(movies);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [loggedIn])
+
   return (
     <div className="page">
-      <Routes>
-        <Route path="/signup" element={<> <Register /> </>} />
-        <Route path="/signin" element={<> <Login /> </>} />
-        <Route path="/" element={<> <HeaderLanding /> <Main /> <Footer /> </>}>
-          <Route path="about-project" element={<AboutProject />} />
-          <Route path="technologies" element={<Techs />} />
-          <Route path="about-me" element={<AboutMe />} />
-        </Route>
-        <Route path="/profile" element={
-          <>
-            <HeaderMain
-            // onBurgerMenuClick={handleBurgerMenuClick}
-            // onClose={closeAllPopups}
-            // isOpen={isBurgerMenuOpen}
-            />
-            <Profile />
-          </>} />
-        <Route path="/movies" element={<> <HeaderMain />
-          <Movies
-            movies={movies}
-          /> <Footer /> </>} />
-        <Route path="/saved-movies" element={<> <HeaderMain /> <SavedMovies /> <Footer /> </>} />
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
+      <CurrentUserContext.Provider value={currentUser}>
+        <Routes>
+          <Route path="/signup" element={
+            <Register
+              onRegister={handleRegisterSubmit}
+            />} />
+          <Route path="/signin" element={
+            <Login
+              onLogin={handleLoginSubmit}
+            />} />
+          <Route path="/" element={<> <HeaderLanding /> <Main /> <Footer /> </>}>
+            <Route path="about-project" element={<AboutProject />} />
+            <Route path="technologies" element={<Techs />} />
+            <Route path="about-me" element={<AboutMe />} />
+          </Route>
+          <Route path="/profile" element={
+            <>
+              <HeaderMain
+              />
+              <Profile 
+              onProfileUpdate={handleProfileUpdate}
+              />
+            </>} />
+          <Route path="/movies" element={<> <HeaderMain />
+            <Movies
+              movies={filteredMovies}
+              onSave = {handleSaveMovieClick}
+              onFilter={handleFilteredMovies}
+              onDelete={handleUnsaveMovie}
+              isLoaded={isLoaded}
+              isError={isError}
+            /> <Footer /> </>} />
+          <Route path="/saved-movies" element={<> <HeaderMain />
+            <SavedMovies
+              savedMovies={savedMovies}
+              onDelete={handleDeleteMovieClick}
+              // onFilter={handleFilteredSavedMovies}
+            /> <Footer /> </>} />
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </CurrentUserContext.Provider>
     </div >
   );
 }
-
