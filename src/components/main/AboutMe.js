@@ -12,7 +12,8 @@ export default function AboutMe(props) {
 
   return (
     <>
-      <section className="content__container">
+    <section id="about-me">
+      <div className="content__container">
         <div className="content__header">
           <h1 className="content__header-text">Студент</h1>
         </div>
@@ -25,6 +26,7 @@ export default function AboutMe(props) {
         </div>
         <img className="about-me__photo" src={profilePic} alt='фото-профиля' />
         </div>
+      </div>
       </section>
       <Portfolio />
     </>

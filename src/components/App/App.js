@@ -35,6 +35,8 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState([]);
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setfilteredMovies] = useState([]);
+  // const [shortFilms, setShortFilms] = useState([]);
+  // const [shortFilmsSaved, setShortFilmsSaved] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [isLoaded, setIsLoaded] = useState(true);
   const [isError, setIsError] = useState(false);
@@ -78,7 +80,7 @@ export default function App() {
       .then((data) => {
         if (data.email) {
           setLoggedIn(true);
-          navigate('/movies');
+          navigate('/signin');
         } else {
         }
       })
@@ -90,8 +92,10 @@ export default function App() {
   function handleLoginSubmit(email, password) {
     auth.authorize(email, password)
       .then((res) => {
+        console.log(res);
         if (res.token) {
           localStorage.setItem("token", res.token);
+          console.log(res.token);
           setEmail(email);
           authInfo(res.token);
           getMovies();
@@ -113,7 +117,7 @@ export default function App() {
       .catch((err) => {
         console.log(err);
       });
-  }, [])
+  }, [loggedIn])
 
   function handleProfileUpdate(data) {
     mainApi.editProfileInfo(data)
@@ -182,6 +186,7 @@ export default function App() {
   function handleFilteredMovies(e) {
     console.log(e);
     setIsLoaded(false);
+    handleFilterCheckbox();
     const result = movies.filter(movie => movie.nameRU.includes(e));
     console.log(result);
     if(result.length === 0){
@@ -190,6 +195,23 @@ export default function App() {
     setfilteredMovies(result);
     setIsLoaded(true);
   }
+
+  // const isChecked = false;
+
+  function handleFilterCheckbox(isChecked) {
+    console.log(isChecked);
+    if (isChecked){
+      const shortFilms = movies.filter(movie => movie.duration <= 40)
+      const shortFilmsSaved = savedMovies.filter(movie => movie.duration <= 40)
+      console.log(shortFilms);
+      setMovies(shortFilms);
+      setSavedMovies(shortFilmsSaved);
+    }
+  }
+
+  useEffect(() => {
+    handleFilterCheckbox();
+  }, [])
 
   // function handleFilteredSavedMovies(e) {
   //   console.log(e);
@@ -239,13 +261,16 @@ export default function App() {
               onSave = {handleSaveMovieClick}
               onFilter={handleFilteredMovies}
               onDelete={handleUnsaveMovie}
+              savedMovies={savedMovies}
               isLoaded={isLoaded}
               isError={isError}
+              onFilterCheckBox={handleFilterCheckbox}
             /> <Footer /> </>} />
           <Route path="/saved-movies" element={<> <HeaderMain />
             <SavedMovies
               savedMovies={savedMovies}
               onDelete={handleDeleteMovieClick}
+              onFilterCheckBox={handleFilterCheckbox}
               // onFilter={handleFilteredSavedMovies}
             /> <Footer /> </>} />
           <Route path="*" element={<ErrorPage />} />

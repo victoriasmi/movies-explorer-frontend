@@ -1,4 +1,5 @@
 import React from 'react';
+// import { Link, animateScroll as scroll } from "react-scroll";
 // import editAvatarPic from "../images/edit_button.svg"
 // import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import { Link, Route, Routes, Outlet } from "react-router-dom";
@@ -15,5 +16,4 @@ export default function NavTab(props) {
         <Outlet/>
       </ul>
   );
-
 }

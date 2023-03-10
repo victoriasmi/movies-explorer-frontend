@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 // import trialMovie from '../../images/pic__COLOR_pic.png';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
@@ -10,7 +10,11 @@ export default function MoviesCard(props) {
   // const isOwn = props.card.owner._id === currentUser._id;
   // const isLiked = props.card.likes.some(i => i._id === currentUser._id);
 
-  function handleSaveClick(){
+  useEffect(() => {
+    props.savedMovies.filter(m => { if (m.id === props.movie.id) { setisSaved(true) } });
+  }, [])
+
+  function handleSaveClick() {
     console.log(isSaved);
     setisSaved(true);
     localStorage.setItem("isSaved", true);
@@ -19,7 +23,7 @@ export default function MoviesCard(props) {
     props.onSave(props.movie)
   }
 
-  function handleDeleteClick(){
+  function handleDeleteClick() {
     setisSaved(false);
     localStorage.setItem("isSaved", false);
     console.log(isSaved);
@@ -27,22 +31,33 @@ export default function MoviesCard(props) {
     props.onDelete(props.movie)
   }
 
-  const currentUser = React.useContext(CurrentUserContext);
+  // const currentUser = React.useContext(CurrentUserContext);
   // const isOwn = props.card.owner === currentUser._id;
 
   // const isSaved = props.card.likes.some((i) => i === currentUser._id);
 
-  function calcDuration(){
-    const duration = props.movie.duration;
+  function calcDuration() {
+    const duration = props.movie.duration; // in min
     // console.log(duration);
-    // console.log(duration/60);
-    const hours = Math.floor(duration/60);
+    const hours = duration / 60;
+    const rhours = Math.floor(hours);
     // console.log(hours);
-    const minutes = duration-60;
+    // console.log(rhours);
+    const minutes = (hours - rhours) * 60;
+    const rminutes = Math.round(minutes);
     // console.log(minutes);
-    const newDuration = hours + "ч " + minutes + "м ";
+    // console.log(rminutes);
+    const newDuration = rhours + "ч " + rminutes + "м ";
+    // console.log(newDuration);
     return newDuration;
   }
+
+  // function toHoursAndMinutes(totalMinutes) {
+  //   const hours = Math.floor(totalMinutes / 60);
+  //   const minutes = totalMinutes % 60;
+  
+  //   return { hours, minutes };
+  // }
 
   return (
     <>

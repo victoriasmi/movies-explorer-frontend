@@ -7,7 +7,7 @@ export default function Techs(props) {
   // const currentUser = React.useContext(CurrentUserContext);
 
   return (
-    <section className="content__container content__container_type_grey">
+    <section className="content__container content__container_type_grey" id="technologies">
       <div className="tech__container">
         <div className="content__header">
           <h1 className="content__header-text">Технологии</h1>

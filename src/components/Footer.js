@@ -1,4 +1,5 @@
 import { Link, Route, Switch } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 
 export default function Footer() {
   return (

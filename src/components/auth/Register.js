@@ -34,7 +34,7 @@ export default function Register(props) {
           <form className="auth__form auth__form_type_register" onSubmit={handleRegister}>
             {/* // onSubmit={handleRegister} noValidate> */}
             <p className="auth__input-title">Имя</p>
-            <input className="auth__input auth__input_type_register" id="name-input" type="name" name="name" value={name ?? ""} onChange={handleNameChange}/>
+            <input className="auth__input auth__input_type_register" id="name-input" type="name" name="name" minLength="2" maxLength="30" value={name ?? ""} onChange={handleNameChange}/>
             {/* // value={password ?? ""} onChange={handlePasswordChange} required /> */}
             <span className="password-input-error error"></span>
             <p className="auth__input-title">E-mail</p>
@@ -43,7 +43,7 @@ export default function Register(props) {
             {/* value={email ?? ""} onChange={handleEmailChange} required /> */}
             <span className="email-input-error error"></span>
             <p className="auth__input-title">Пароль</p>
-            <input className="auth__input auth__form_type_register" id="password-input" type="password" name="password" value={password ?? ""}  onChange={handlePasswordChange} />
+            <input className="auth__input auth__form_type_register" minLength="2" maxLength="30" id="password-input" type="password" name="password" value={password ?? ""}  onChange={handlePasswordChange} />
             {/* // value={password ?? ""} onChange={handlePasswordChange} required /> */}
             <span className="password-input-error error"></span>
             <button className="auth__button auth__button_type_register" type="submit">Зарегистрироваться</button>

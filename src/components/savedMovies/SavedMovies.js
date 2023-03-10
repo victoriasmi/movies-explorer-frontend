@@ -14,7 +14,8 @@ export default function SavedMovies(props) {
         <SearchForm
           onFilter={props.onFilter}
         />
-        <FilterCheckbox 
+        <FilterCheckbox
+          onFilterCheckBox={props.onFilterCheckBox}
         />
       </div>
       {/* <section className="proloader__box">

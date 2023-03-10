@@ -69,9 +69,7 @@ class MainApi {
         year: data.year,
         description: data.description,
         image: `https://api.nomoreparties.co${data.image.url}`,
-        // image: data.image,
         trailerLink: data.trailerLink,
-        // thumbnail: data.thumbnail,
         id: data.id,
         nameRU: data.nameRU,
         nameEN: data.nameEN,
@@ -139,6 +137,5 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-  // baseUrl: 'http://api.diploma.project.nomoredomains.rocks',
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'http://api.diploma.project.nomoredomains.rocks',
 });

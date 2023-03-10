@@ -14,7 +14,9 @@ export default function Movies(props) {
         <SearchForm
           onFilter={props.onFilter}
         />
-        <FilterCheckbox />
+        <FilterCheckbox
+          onFilterCheckBox={props.onFilterCheckBox}
+        />
       </div>
       {/* <section className="preloader__box"> */}
       <section className={`preloader__box ${!props.isLoaded && "preloader__box_type_active"}`}>
@@ -31,6 +33,7 @@ export default function Movies(props) {
           movies={props.movies}
           onSave={props.onSave}
           onDelete={props.onDelete}
+          savedMovies={props.savedMovies}
         />
       </section>
       <section className="loader">
