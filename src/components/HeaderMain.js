@@ -4,8 +4,9 @@ import { Link, Route, Routes } from "react-router-dom";
 import logo from '../images/logo.svg';
 import burgermenu from '../images/burger-menu.svg';
 import Navigation from "./Navigation";
+import App from './App/App';
 
-export default function HeaderMain() {
+export default function HeaderMain(props) {
   // const history = useHistory();
 
   // function handleLogOut() {
@@ -16,7 +17,7 @@ export default function HeaderMain() {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
 
 
-  console.log(isBurgerMenuOpen);
+  // console.log(isBurgerMenuOpen);
 
   function handleBurgerMenuClick() {
     setIsBurgerMenuOpen(true);
