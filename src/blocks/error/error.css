@@ -6,6 +6,7 @@
   display: block;
   min-height: 12px;
   padding-top: 6px;
+  text-align: left;
 }
 
 .error:last-of-type {

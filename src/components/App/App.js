@@ -14,6 +14,8 @@ import AboutMe from '../main/AboutMe';
 import AboutProject from '../main/AboutProject';
 import Techs from '../main/Techs';
 import SavedMovies from '../savedMovies/SavedMovies'
+import RequireAuth from '../../hoc/RequireAuth';
+
 // import Errors from '../Errors';
 import Movies from '../movies/Movies';
 import { moviesApi } from '../../utils/MoviesApi'
@@ -32,7 +34,7 @@ export default function App() {
   // }, [isBurgerMenuOpen])
 
   // const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState(null);
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setfilteredMovies] = useState([]);
   // const [shortFilms, setShortFilms] = useState([]);
@@ -46,7 +48,7 @@ export default function App() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
-  // const [isSuccess, setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -124,13 +126,21 @@ export default function App() {
       .then((data) => {
         setEmail(data.email);
         setName(data.name);
-        setCurrentUser(data);
-        window.location.reload();
-        navigate("/profile");
+        setCurrentUser(data.data);
+        setIsSuccess(true);
+        // window.location.reload();
+        // navigate("/profile");
       })
       .catch((err) => {
         console.log(err);
       })
+  }
+
+  function handleLogOut() {
+    localStorage.removeItem("token");
+    setCurrentUser(null);
+    setLoggedIn(false);
+    navigate("/");
   }
 
   function getMovies() {
@@ -168,15 +178,15 @@ export default function App() {
 
   function handleDeleteMovieClick(movie) {
     mainApi.deleteMovie(movie._id)
-    .then(() => {
-      setSavedMovies((movies) => movies.filter(m => { return m._id !== movie._id || m.id !== movie.id }))
-    })
+      .then(() => {
+        setSavedMovies((movies) => movies.filter(m => { return m._id !== movie._id || m.id !== movie.id }))
+      })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  function handleUnsaveMovie(movie){
+  function handleUnsaveMovie(movie) {
     const unsavedMovie = savedMovies.filter(m => { return m.id === movie.id });
     let movieToDelete = unsavedMovie.find(a => a._id);
     console.log(movieToDelete._id);
@@ -189,7 +199,7 @@ export default function App() {
     handleFilterCheckbox();
     const result = movies.filter(movie => movie.nameRU.includes(e));
     console.log(result);
-    if(result.length === 0){
+    if (result.length === 0) {
       setIsError(true);
     } else setIsError(false);
     setfilteredMovies(result);
@@ -200,7 +210,7 @@ export default function App() {
 
   function handleFilterCheckbox(isChecked) {
     console.log(isChecked);
-    if (isChecked){
+    if (isChecked) {
       const shortFilms = movies.filter(movie => movie.duration <= 40)
       const shortFilmsSaved = savedMovies.filter(movie => movie.duration <= 40)
       console.log(shortFilms);
@@ -230,6 +240,10 @@ export default function App() {
       });
   }, [loggedIn])
 
+  //   useEffect(() => {
+  //     getMovies();
+  //   }, [loggedIn])
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -242,37 +256,49 @@ export default function App() {
             <Login
               onLogin={handleLoginSubmit}
             />} />
-          <Route path="/" element={<> <HeaderLanding /> <Main /> <Footer /> </>}>
+
+          <Route path="/" element={
+            !loggedIn ?
+              <> <HeaderLanding /> <Main /> <Footer /> </>
+              :
+              <> <HeaderMain /> <Main /> <Footer /> </>}>
             <Route path="about-project" element={<AboutProject />} />
             <Route path="technologies" element={<Techs />} />
             <Route path="about-me" element={<AboutMe />} />
           </Route>
           <Route path="/profile" element={
-            <>
+            <RequireAuth currentUser={currentUser}>
               <HeaderMain
               />
-              <Profile 
-              onProfileUpdate={handleProfileUpdate}
+              <Profile
+                onProfileUpdate={handleProfileUpdate}
+                onLogout={handleLogOut}
+                isSuccess={isSuccess}
               />
-            </>} />
-          <Route path="/movies" element={<> <HeaderMain />
+            </RequireAuth>} />
+          <Route path="/movies" element={ 
+          <RequireAuth currentUser={currentUser}>
+          <HeaderMain />
             <Movies
               movies={filteredMovies}
-              onSave = {handleSaveMovieClick}
+              onSave={handleSaveMovieClick}
               onFilter={handleFilteredMovies}
               onDelete={handleUnsaveMovie}
               savedMovies={savedMovies}
               isLoaded={isLoaded}
               isError={isError}
               onFilterCheckBox={handleFilterCheckbox}
-            /> <Footer /> </>} />
-          <Route path="/saved-movies" element={<> <HeaderMain />
+            /> <Footer /> 
+            </RequireAuth>} />
+          <Route path="/saved-movies" element={
+          <RequireAuth currentUser={currentUser}>
+          <HeaderMain />
             <SavedMovies
               savedMovies={savedMovies}
               onDelete={handleDeleteMovieClick}
               onFilterCheckBox={handleFilterCheckbox}
-              // onFilter={handleFilteredSavedMovies}
-            /> <Footer /> </>} />
+            // onFilter={handleFilteredSavedMovies}
+            /> <Footer /> </RequireAuth>} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </CurrentUserContext.Provider>

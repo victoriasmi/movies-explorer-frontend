@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from 'react-router';
 import AboutMe from './AboutMe';
 import AboutProject from './AboutProject';
 import Portfolio from './Portfolio';
@@ -17,6 +18,7 @@ export default function Main(props) {
       <AboutProject/>
       <Techs/>
       <AboutMe/>
+      <Outlet/>
     </main>
   );
 

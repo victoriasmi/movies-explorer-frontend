@@ -137,5 +137,6 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-  baseUrl: 'http://api.diploma.project.nomoredomains.rocks',
+  // baseUrl: 'https://api.diploma.project.nomoredomains.rocks',
+    baseUrl: 'http://localhost:3000',
 });
