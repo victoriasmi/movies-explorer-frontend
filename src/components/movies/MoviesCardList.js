@@ -16,22 +16,22 @@ export default function MoviesCardList(props) {
   //   console.log(isCheckSaved);
   // }
 
-  const page = document.querySelector(".page");
+  // const page = document.querySelector(".page");
+  // // observer.observe(page);
+  // const observer = new ResizeObserver(entries => {
+  //   const pageElement = entries[0];
+  //   if(pageElement.contentRect.width >= 1280){
+  //     setmoviesPerPage(12);
+  //   } else if(pageElement.contentRect.width >= 678){
+  //     setmoviesPerPage(8);
+  //   } else setmoviesPerPage(5);
+  //   console.log(moviesPerPage);
+  // });
   // observer.observe(page);
-  const observer = new ResizeObserver(entries => {
-    const pageElement = entries[0];
-    if(pageElement.contentRect.width >= 1280){
-      setmoviesPerPage(12);
-    } else if(pageElement.contentRect.width >= 678){
-      setmoviesPerPage(8);
-    } else setmoviesPerPage(5);
-    console.log(moviesPerPage);
-  });
-  observer.observe(page);
 
-  // observer.observe(page);
-  const allMovies = props.movies.length;
-  console.log(allMovies);
+  // // observer.observe(page);
+  // const allMovies = props.movies.length;
+  // console.log(allMovies);
 
   // function Pagination(){
    

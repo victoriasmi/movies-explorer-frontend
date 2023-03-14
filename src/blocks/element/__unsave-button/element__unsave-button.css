@@ -1,4 +1,6 @@
-.element__delete-button {
+.element__unsave-button {
+  /* visibility: hidden;
+  display: none; */
   background-image: url(../../../images/nsave-button.svg);
   width: 30px;
   height: 30px;
@@ -8,7 +10,7 @@
   background-color: transparent;
 }
 
-.element__delete-button:hover {
+.element__unsave-button:hover {
   opacity: 0.6;
   transition: 0.2s ease-out;
 }

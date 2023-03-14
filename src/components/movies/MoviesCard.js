@@ -1,18 +1,15 @@
 import React, { useState, useContext, useEffect } from 'react';
-// import trialMovie from '../../images/pic__COLOR_pic.png';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function MoviesCard(props) {
 
+  const currentUser = React.useContext(CurrentUserContext);
+
   const [isSaved, setisSaved] = useState(false);
 
-  // const currentUser = React.useContext(CurrentUserContext);
-  // const isOwn = props.card.owner._id === currentUser._id;
-  // const isLiked = props.card.likes.some(i => i._id === currentUser._id);
-
   useEffect(() => {
-    props.savedMovies.filter(m => { if (m.id === props.movie.id) { setisSaved(true) } });
-  }, [])
+    props.savedMovies.filter(m => { if (m.id === props.movie.id && m.owner === currentUser._id) { setisSaved(true) } });
+  }, []);
 
   function handleSaveClick() {
     console.log(isSaved);
@@ -30,11 +27,6 @@ export default function MoviesCard(props) {
     console.log(props.movie);
     props.onDelete(props.movie)
   }
-
-  // const currentUser = React.useContext(CurrentUserContext);
-  // const isOwn = props.card.owner === currentUser._id;
-
-  // const isSaved = props.card.likes.some((i) => i === currentUser._id);
 
   function calcDuration() {
     const duration = props.movie.duration; // in min

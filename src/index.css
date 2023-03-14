@@ -56,14 +56,15 @@
 @import url(./blocks/footer/__link/footer__link.css);
 @import url(./blocks/element/element.css);
 @import url(./blocks/element/__delete-button/element__delete-button.css);
+@import url(./blocks/element/__delete-button/_active/element__delete-button_type_active.css);
 @import url(./blocks/element/__top/element__top.css);
 @import url(./blocks/element/__save-button/element__save-button.css);
 @import url(./blocks/element/__save-button/_type/_active/element__save-button_type_active.css);
-@import url(./blocks/element/__delete-button/element__delete-button.css);
 @import url(./blocks/element/__title/element__title.css);
 @import url(./blocks/element/__duration/element__duration.css);
 @import url(./blocks/element/__image/element__image.css);
 @import url(./blocks/element/__text/element__text.css);
+@import url(./blocks/element/__unsave-button/element__unsave-button.css);
 @import url(./blocks/elements/elements.css);
 @import url(./blocks/elements/__saved/elements__saved.css);
 @import url(./blocks/loader/loader.css);
