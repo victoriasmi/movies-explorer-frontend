@@ -1,7 +1,7 @@
 .profile__info {
   display: flex;
   flex-direction: column;
-  gap: 17px;
+  /* gap: 17px; */
   width: 410px;
   justify-content: space-between;
   margin: 123px auto 220px auto;

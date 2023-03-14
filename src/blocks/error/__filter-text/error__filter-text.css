@@ -1,0 +1,10 @@
+.error__filter-text{
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #000000;
+  padding-bottom: 50px;
+  /* margin: 0 auto 0 0; */
+  /* justify-self: left; */
+  text-align: center;
+}

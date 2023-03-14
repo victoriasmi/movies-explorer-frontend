@@ -39,7 +39,11 @@
   }
 }
 
-.preloader {
+/* .preloader__box_type_active {
+  visibility: visible;
+} */
+
+.preloader{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,6 +51,10 @@
   height: 100%;
   z-index: 10;
   padding: 20px;
+}
+
+.preloader__active{
+  visibility: visible;
 }
 
 .preloader__container {
@@ -60,7 +68,7 @@
   height: 100px;
   position: absolute;
   top: 0;
-  left: 0;
+  left: -20px;
   background: #FF6838;
   border-radius: 50px;
 }

@@ -1,76 +1,68 @@
-import React from 'react';
-import trialMovie from '../../images/pic__COLOR_pic.png';
+import React, { useState, useContext, useEffect } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function MoviesCard(props) {
-  // function handleClick() {
-  //   props.onCardClick(props.card);
-  // }
 
-  // function handleLikeClick() {
-  //   props.onCardLike(props.card);
-  // }
+  const currentUser = React.useContext(CurrentUserContext);
 
-  // function handleDeleteClick() {
-  //   props.onCardDelete(props.card);
-  // }
+  const [isSaved, setisSaved] = useState(false);
 
-  // const currentUser = React.useContext(CurrentUserContext);
-  // const isOwn = props.card.owner._id === currentUser._id;
-  // const isLiked = props.card.likes.some(i => i._id === currentUser._id);
+  useEffect(() => {
+    props.savedMovies.filter(m => { if (m.id === props.movie.id && m.owner === currentUser._id) { setisSaved(true) } });
+  }, []);
+
+  function handleSaveClick() {
+    console.log(isSaved);
+    setisSaved(true);
+    localStorage.setItem("isSaved", true);
+    console.log(isSaved);
+    console.log(props.movie);
+    props.onSave(props.movie)
+  }
+
+  function handleDeleteClick() {
+    setisSaved(false);
+    localStorage.setItem("isSaved", false);
+    console.log(isSaved);
+    console.log(props.movie);
+    props.onDelete(props.movie)
+  }
+
+  function calcDuration() {
+    const duration = props.movie.duration; // in min
+    // console.log(duration);
+    const hours = duration / 60;
+    const rhours = Math.floor(hours);
+    // console.log(hours);
+    // console.log(rhours);
+    const minutes = (hours - rhours) * 60;
+    const rminutes = Math.round(minutes);
+    // console.log(minutes);
+    // console.log(rminutes);
+    const newDuration = rhours + "ч " + rminutes + "м ";
+    // console.log(newDuration);
+    return newDuration;
+  }
+
+  // function toHoursAndMinutes(totalMinutes) {
+  //   const hours = Math.floor(totalMinutes / 60);
+  //   const minutes = totalMinutes % 60;
+  
+  //   return { hours, minutes };
+  // }
 
   return (
     <>
       <li className="element">
         <div className="element__top">
           <div className="element__text">
-            <h2 className="element__title">33 слова о дизайне</h2>
-            <p className="element__duration">1ч 47м</p>
+            <h2 className="element__title">{props.movie.nameRU}</h2>
+            <p className="element__duration">{calcDuration()}</p>
           </div>
-          <button className="element__save-button" type="button"></button>
+          <button className={`element__save-button ${isSaved && "element__save-button_type_active"}`} type="button" onClick={isSaved ? handleDeleteClick : handleSaveClick}></button>
         </div>
-        <img className="element__image" src={trialMovie} alt="постер" />
+        <img className="element__image" src={`https://api.nomoreparties.co${props.movie.image.url}`} alt="постер" />
       </li>
-      <li className="element">
-        <div className="element__top">
-          <div className="element__text">
-            <h2 className="element__title">33 слова о дизайне</h2>
-            <p className="element__duration">1ч 47м</p>
-          </div>
-          <button className="element__save-button element__save-button_type_active" type="button"></button>
-        </div>
-        <img className="element__image" src={trialMovie} alt="постер" />
-      </li>
-      <li className="element">
-        <div className="element__top">
-          <div className="element__text">
-            <h2 className="element__title">33 слова о дизайне</h2>
-            <p className="element__duration">1ч 47м</p>
-          </div>
-          <button className="element__save-button" type="button"></button>
-        </div>
-        <img className="element__image" src={trialMovie} alt="постер" />
-      </li>
-      <li className="element">
-        <div className="element__top">
-          <div className="element__text">
-            <h2 className="element__title">33 слова о дизайне</h2>
-            <p className="element__duration">1ч 47м</p>
-          </div>
-          <button className="element__save-button" type="button"></button>
-        </div>
-        <img className="element__image" src={trialMovie} alt="постер" />
-      </li>
-      <li className="element">
-        <div className="element__top">
-          <div className="element__text">
-            <h2 className="element__title">33 слова о дизайне</h2>
-            <p className="element__duration">1ч 47м</p>
-          </div>
-          <button className="element__save-button" type="button"></button>
-        </div>
-        <img className="element__image" src={trialMovie} alt="постер" />
-      </li>
-      
     </>
   )
 }
