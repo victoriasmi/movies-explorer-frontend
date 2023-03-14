@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function SavedMoviesCard(props) {
@@ -50,7 +51,7 @@ export default function SavedMoviesCard(props) {
           </div>
           <button className={`element__delete-button ${isOwned && "element__delete-button_type_active"}`} type="button" onClick={handleDeleteClick}></button>
         </div>
-        <img className="element__image" src={props.savedMovie.image} alt="постер" />
+        <Link to={props.savedMovie.trailerLink} target="_blank" ><img className="element__image" src={props.savedMovie.image} alt="постер" /></Link>
       </li>
     </>
   )
