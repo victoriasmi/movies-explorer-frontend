@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import MoviesCardList from './MoviesCardList';
 import SearchForm from './SearchForm';
 import FilterCheckbox from './FilterCheckbox';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Preloader from './Preloader';
 
 export default function Movies(props) {
 
-  console.log(props.isLoaded);
+  // const currentUser = useContext(CurrentUserContext);
+  // console.log(currentUser);
+
+  // console.log(props.isLoaded);
 
   return (
     <main className="movies">
@@ -35,9 +39,6 @@ export default function Movies(props) {
           onDelete={props.onDelete}
           savedMovies={props.savedMovies}
         />
-      </section>
-      <section className="loader">
-        <button className="loader__load-button" type="button">Еще</button>
       </section>
     </main>
   );

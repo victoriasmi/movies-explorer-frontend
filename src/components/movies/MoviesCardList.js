@@ -1,14 +1,11 @@
 import React, { useState, useContext, useEffect } from 'react';
 import MovieCard from './MoviesCard';
-// import editAvatarPic from "../images/edit_button.svg"
-// import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function MoviesCardList(props) {
 
-  // const currentUser = React.useContext(CurrentUserContext);
-  // const [isCheckSaved, setIsCheckSaved] = useState(false);
+  const [moviesPerPage, setmoviesPerPage] = useState([]);
 
-  // // const savedMovies = props.savedMovies;
+  // const savedMovies = props.savedMovies;
 
   // function checkSaved() {
   //   const result = props.movies.map((movie) => (props.savedMovies.filter(m => { return m.id === movie.id })))
@@ -19,24 +16,46 @@ export default function MoviesCardList(props) {
   //   console.log(isCheckSaved);
   // }
 
-  // useEffect(() => {
-  //   checkSaved();
-  // }, []);
+  const page = document.querySelector(".page");
+  // observer.observe(page);
+  const observer = new ResizeObserver(entries => {
+    const pageElement = entries[0];
+    if(pageElement.contentRect.width >= 1280){
+      setmoviesPerPage(12);
+    } else if(pageElement.contentRect.width >= 678){
+      setmoviesPerPage(8);
+    } else setmoviesPerPage(5);
+    console.log(moviesPerPage);
+  });
+  observer.observe(page);
+
+  // observer.observe(page);
+  const allMovies = props.movies.length;
+  console.log(allMovies);
+
+  // function Pagination(){
+   
+  // }
 
   return (
-    <ul className="elements">
-      {props.movies.map((movie) => (
-        <MovieCard
-          key={movie._id}
-          isSavedMo
-          movie={movie}
-          onSave={props.onSave}
-          onDelete={props.onDelete}
-          savedMovies={props.savedMovies}
+    <>
+      <ul className="elements">
+        {props.movies.slice(0, 5).map((movie) => (
+          <MovieCard
+            key={movie._id}
+            isSavedMo
+            movie={movie}
+            onSave={props.onSave}
+            onDelete={props.onDelete}
+            savedMovies={props.savedMovies}
           // isCheckSaved={isCheckSaved}
-        />
-      ))
-      }
-    </ul>
+          />
+        ))
+        }
+      </ul>
+      <div className="loader">
+        <button className="loader__load-button" type="button" >Еще</button>
+      </div>
+    </>
   );
 }

@@ -65,6 +65,7 @@
 @import url(./blocks/element/__image/element__image.css);
 @import url(./blocks/element/__text/element__text.css);
 @import url(./blocks/elements/elements.css);
+@import url(./blocks/elements/__saved/elements__saved.css);
 @import url(./blocks/loader/loader.css);
 @import url(./blocks/loader/__load-button/loader__load-button.css);
 @import url(./blocks/search/search.css);

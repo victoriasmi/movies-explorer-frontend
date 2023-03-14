@@ -5,10 +5,11 @@ import SavedMoviesCard from './SavedMoviesCard';
 
 export default function SavedMoviesCardList(props) {
 
+  console.log(props.savedMovies);
   // const currentUser = React.useContext(CurrentUserContext);
 
   return (
-      <ul className="elements">
+      <ul className="elements elements__saved">
         {props.savedMovies.map((savedMovie) => (
           <SavedMoviesCard
             key={savedMovie._id}

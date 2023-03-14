@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import SavedMoviesCardList from './SavedMoviesCardList';
-import SearchForm from '../movies/SearchForm';
-import FilterCheckbox from '../movies/FilterCheckbox';
+import SavedSearchForm from '../savedMovies/SavedSearchForm';
+import SavedFilterCheckbox from '../savedMovies/SavedFilterCheckbox';
 // import Preloader from './Preloader';
-// import editAvatarPic from "../images/edit_button.svg"
-// import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function SavedMovies(props) {
 
   return (
     <main className="movies">
       <div className="movies__finder">
-        <SearchForm
-          onFilter={props.onFilter}
+        <SavedSearchForm
+          onSavedFilter={props.onSavedFilter}
         />
-        <FilterCheckbox
-          onFilterCheckBox={props.onFilterCheckBox}
+        <SavedFilterCheckbox
+          onSavedFilterCheckBox={props.onSavedFilterCheckBox}
         />
       </div>
       {/* <section className="proloader__box">
@@ -27,10 +25,6 @@ export default function SavedMovies(props) {
           onDelete={props.onDelete}
         />
       </section>
-      <section className="loader">
-        <button className="loader__load-button" type="button">Еще</button>
-      </section>
     </main>
   );
-
 }

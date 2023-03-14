@@ -20,7 +20,7 @@ export default function SavedMoviesCard(props) {
     props.onDelete(props.savedMovie);
   }
 
-  const currentUser = React.useContext(CurrentUserContext);
+  // const currentUser = React.useContext(CurrentUserContext);
   // const isOwn = props.card.owner === currentUser._id;
 
   // const isSaved = props.card.likes.some((i) => i === currentUser._id);

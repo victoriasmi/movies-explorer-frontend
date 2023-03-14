@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Route, Navigate, useLocation } from 'react-router-dom';
 // import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-const RequireAuth = ({ children, currentUser }) => {
+const RequireAuth = ({ children}) => {
+  const location = useLocation();
   // const currentUser = React.useContext.CurrentUserContext;
-  if(!currentUser){
+  const user = localStorage.getItem("userData");
+  // const currentUser = useContext(CurrentUserContext);
+  console.log(user);
+  // console.log(currentUser);
+  if(!user){
     // console.log(currentUser);
-    return <Navigate to="/" />
+    return <Navigate to="/"  state={{ from: location }}/>
   }
   // console.log(currentUser);
   // console.log(children);
