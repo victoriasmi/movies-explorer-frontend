@@ -22,7 +22,8 @@ export default function SearchForm(props) {
   }
 
   useEffect(() => {
-    setInput(localStorage.getItem("input"));
+    const inputFromStorage = localStorage.getItem("input");
+    setInput(inputFromStorage);
   }, [])
 
   return (
