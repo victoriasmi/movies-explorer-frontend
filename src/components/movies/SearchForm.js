@@ -14,11 +14,16 @@ export default function SearchForm(props) {
     setInput(e.target.value);
     localStorage.setItem("input", input);
   }
+  console.log(input);
 
   function handleFilter(e) {
     e.preventDefault()
     props.onFilter(input);
   }
+
+  useEffect(() => {
+    setInput(localStorage.getItem("input"));
+  }, [])
 
   return (
     // <section className="content">
@@ -27,7 +32,7 @@ export default function SearchForm(props) {
         <div className="search__block-input">
           <img className="search__icon" src={searchIcon} alt="поиск"></img>
           <input className="search__input" id="movie-input" type="movie" name="movie"
-            minLength="2" maxLength="30" placeholder="Фильм" value={input} onChange={handleInputChange} required />
+            minLength="2" maxLength="30" placeholder="Фильм" value={input ?? ""} onChange={handleInputChange} required />
         </div>
         {/* value={email ?? ""} onChange={handleEmailChange} required /> */}
         {/* <span className="movie-input-error error"></span> */}

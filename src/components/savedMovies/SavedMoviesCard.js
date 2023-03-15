@@ -13,14 +13,14 @@ export default function SavedMoviesCard(props) {
 
   useEffect(() => {
     const isOwn = props.savedMovie.owner === currentUser._id;
-    console.log(isOwn);
-    console.log(props.savedMovie.owner);
-    console.log(currentUser._id);
+    // console.log(isOwn);
+    // console.log(props.savedMovie.owner);
+    // console.log(currentUser._id);
     setIsOwned(isOwn);
   }, []);
 
   function handleDeleteClick() {
-    console.log(props.savedMovie);
+    // console.log(props.savedMovie);
     props.onDelete(props.savedMovie);
   };
 
@@ -51,7 +51,7 @@ export default function SavedMoviesCard(props) {
           </div>
           <button className={`element__delete-button ${isOwned && "element__delete-button_type_active"}`} type="button" onClick={handleDeleteClick}></button>
         </div>
-        <Link to={props.savedMovie.trailerLink} target="_blank" ><img className="element__image" src={props.savedMovie.image} alt="постер" /></Link>
+        <Link to={props.savedMovie.trailerLink} target="_blank" rel="noreferrer noopener"><img className="element__image" src={props.savedMovie.image} alt="постер" /></Link>
       </li>
     </>
   )

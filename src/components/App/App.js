@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, Link, useNavigate } from "react-router-dom";
-// import Dashboard from './Dashboard';
+import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import HeaderMain from '../HeaderMain';
 import HeaderLanding from '../HeaderLanding';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -15,50 +14,36 @@ import AboutProject from '../main/AboutProject';
 import Techs from '../main/Techs';
 import SavedMovies from '../savedMovies/SavedMovies'
 import RequireAuth from '../../hoc/RequireAuth';
-
-// import Errors from '../Errors';
 import Movies from '../movies/Movies';
 import { moviesApi } from '../../utils/MoviesApi'
 import { auth } from '../../utils/Auth'
 import { mainApi } from '../../utils/MainApi'
-// import SavedMovies from '../savedMovies/SavedMovies';
-// import ProtectedRoute from './ProtectedRoute';
-// import { CurrentUserContext } from '../contexts/CurrentUserContext';
-// import { api } from '../utils/api';
-// import { auth } from '../utils/auth';
+import { render } from '@testing-library/react';
 
 export default function App() {
 
-  // useEffect(() => {
-  //   setIsBurgerMenuOpen(true);
-  // }, [isBurgerMenuOpen])
-
-  // const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-  const [currentUser, setCurrentUser] = useState([]);
+  const [currentUser, setCurrentUser] = useState({});
   const [movies, setMovies] = useState([]);
-  // const [moviesPerPage, setMoviesPerPage] = useState[1]
   const [filteredMovies, setfilteredMovies] = useState([]);
-  // const [filterSavedMovies, setFilterSavedMovies] = useState(false);
-  // // const [savedFilteredMovies, setSavedFilteredMovies] = useState([]);
-  // const [shortFilms, setShortFilms] = useState([]);
-  // const [shortFilmsSaved, setShortFilmsSaved] = useState([]);
+  // const [searchQueryResult, setSearchQueryResult] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [savedMoviesAfterFilters, setSavedMoviesAfterFilters] = useState([]);
   const [isLoaded, setIsLoaded] = useState(true);
   const [isError, setIsError] = useState(false);
   const [searchQuerySaved, setSearchQuerySaved] = useState("");
   const [isCheckedSaved, setIsCheckedSaved] = useState(false);
-
   const [loggedIn, setLoggedIn] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [updateErr, setUpdateErr] = useState({});
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
+  const [updateErr, setUpdateErr] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
 
   function handleRegisterSubmit(name, email, password) {
     auth.register(name, email, password)
       .then((data) => {
         if (data.email) {
-          setLoggedIn(true);
+          // setLoggedIn(true);
           navigate('/signin');
         } else {
         }
@@ -74,7 +59,8 @@ export default function App() {
         console.log(res);
         if (res.token) {
           localStorage.setItem("token", res.token);
-          // console.log(res.token);
+          setLoggedIn(true);
+          console.log("успешный логин, получили токен");
           authInfo(res.token);
           getMovies();
           navigate('/movies');
@@ -91,17 +77,20 @@ export default function App() {
     const token = localStorage.getItem("token");
     if (token) {
       authInfo(token);
+      console.log("запросили токен повторно");
     }
   }, [])
 
   function authInfo(token) {
     auth.getInfo(token)
       .then((data) => {
-        // setCurrentUser(data.data);
-        // console.log(data.data);
-        // localStorage.setItem("userData", data.data);
-        // console.log(localStorage.getItem("userData"));
-        setLoggedIn(true);
+        setCurrentUser(data.data);
+        console.log("запросили данные для пользователя токеном после логина");
+        console.log(data.data);
+        console.log(currentUser);
+        localStorage.setItem("userData", data.data);
+        console.log(localStorage.getItem("userData"));
+        // setLoggedIn(true);
       })
       .catch((err) => {
         console.log(err);
@@ -113,8 +102,12 @@ export default function App() {
       .then((userData) => {
         setCurrentUser(userData.data);
         setLoggedIn(true);
-        // localStorage.setItem("userData", userData.data);
+        console.log("запросили getprofileinfo с токеном в локалсторадж");
+        localStorage.setItem("userData", userData.data);
+        console.log(localStorage.getItem("userData"));
         console.log(userData.data);
+        console.log(currentUser);
+        render();
       })
       .catch((err) => {
         console.log(err);
@@ -124,30 +117,35 @@ export default function App() {
   function handleProfileUpdate(data) {
     mainApi.editProfileInfo(data)
       .then((data) => {
+        console.log("запросили данные после обновления профиля");
         setCurrentUser(data.data);
         console.log(data.data);
         setLoggedIn(true);
         setIsSuccess(true);
-        alert("успех");
-        // window.location.reload();
-        // navigate("/profile");
+        setIsInfoTooltipOpen(true);
       })
       .catch((err) => {
         console.log(err);
-        // setUpdateErr(err);
-        alert(err);
+        setIsSuccess(false);
+        setUpdateErr(err);
+        setIsInfoTooltipOpen(true);
       })
   };
 
+  function closePopup() {
+    setIsInfoTooltipOpen(false);
+    navigate("/profile");
+    window.location.reload();
+  };
+
   // useEffect(() => {
-  //   if (loggedIn) {
-  //     navigate("/movies");
-  //   }
-  // }, [loggedIn, navigate]);
+  //   navigate("/profile");
+  // }, [isInfoTooltipOpen]);
 
   function handleLogOut() {
     localStorage.removeItem("token");
     setCurrentUser(null);
+    console.log(currentUser);
     setLoggedIn(false);
     localStorage.removeItem("userData");
     navigate("/");
@@ -167,14 +165,14 @@ export default function App() {
 
   useEffect(() => {
     getMovies();
-  }, [loggedIn])
+  }, [])
 
   function handleSaveMovieClick(movie) {
     mainApi.saveMovie(movie)
       .then((movie) => {
-        console.log(movie.data)
+        // console.log(movie.data)
         setSavedMovies([movie.data, ...savedMovies]);
-        console.log(savedMovies);
+        // console.log(savedMovies);
       })
       .catch((err) => {
         console.log(err);
@@ -209,29 +207,50 @@ export default function App() {
   function handleUnsaveMovie(movie) {
     const unsavedMovie = savedMovies.filter(m => { return m.id === movie.id });
     let movieToDelete = unsavedMovie.find(a => a._id);
-    console.log(movieToDelete._id);
+    // console.log(movieToDelete._id);
     handleDeleteMovieClick(movieToDelete);
   }
 
+  function handleFilterCheckbox(isChecked) {
+    // console.log(isChecked);
+    if (isChecked) {
+      const shortFilms = movies.filter(movie => movie.duration <= 40)
+      // const shortFilmsSaved = savedMovies.filter(movie => movie.duration <= 40)
+      // console.log(shortFilms);
+      setMovies(shortFilms);
+      // setSavedMovies(shortFilmsSaved);
+    }
+  }
+
   function handleFilteredMovies(e) {
-    console.log(e);
+    // console.log(e);
     setIsLoaded(false);
     handleFilterCheckbox();
     const result = movies.filter(movie => movie.nameRU.toLowerCase().includes(e.toLowerCase()));
-    console.log(result);
+    // console.log(result);
+    localStorage.setItem("searchQueryResult", result);
+    // console.log(localStorage.getItem("searchQueryResult"));
+    setfilteredMovies(result);
+    setIsLoaded(true);
     if (result.length === 0) {
       setIsError(true);
     } else setIsError(false);
-    setfilteredMovies(result);
-    setIsLoaded(true);
   }
+
+  // useEffect(() => {
+  //   console.log(localStorage.getItem("searchQueryResult"));
+  //   setfilteredMovies(localStorage.getItem("searchQueryResult"));
+  //   console.log("взять сторадж");
+  // }, []);
 
   const handleSavedFilteredMovies = (e) => {
 
-    console.log(e);
+    // console.log(e);
     setSearchQuerySaved(e);
+    // console.log(searchQuerySaved);
+    // console.log(setSearchQuerySaved(e));
+    // const searchQuery = localStorage.setItem("searchQuery", searchQuery);
     // setFilterSavedMovies(true);
-    console.log(searchQuerySaved);
     // setSavedFilteredMovies(savedResult);
     // console.log(savedFilteredMovies);
     // setFilterSavedMovies(false);
@@ -253,48 +272,37 @@ export default function App() {
   // }, [])
 
   const savedFilteredMovies = savedMovies.filter(movie => {
+    // console.log(searchQuerySaved);
     return movie.nameRU.toLowerCase().includes(searchQuerySaved.toLowerCase())
   });
-  console.log(savedFilteredMovies);
+  // console.log(savedFilteredMovies);
 
   const savedFilteredAndChekedMovies = savedFilteredMovies.filter(movie => {
     return movie.duration <= 40;
   });
-  console.log(savedFilteredAndChekedMovies);
-
-  function handleFilterCheckbox(isChecked) {
-    console.log(isChecked);
-    if (isChecked) {
-      const shortFilms = movies.filter(movie => movie.duration <= 40)
-      // const shortFilmsSaved = savedMovies.filter(movie => movie.duration <= 40)
-      console.log(shortFilms);
-      setMovies(shortFilms);
-      // setSavedMovies(shortFilmsSaved);
-    }
-  }
+  // console.log(savedFilteredAndChekedMovies);
 
   function handleSavedFilterCheckbox(isChecked) {
-    console.log(isChecked);
+    // console.log(isChecked);
     setIsCheckedSaved(isChecked);
-    // if (isChecked) {
-    //   const shortFilmsSaved = savedFilteredMovies.filter(movie => movie.duration <= 40);
-    //   setSavedMoviesAfterFilters(shortFilmsSaved);
-    //   console.log(shortFilmsSaved);
-    //   console.log(savedMoviesAfterFilters);
-    // } 
-    // else setSavedMoviesAfterFilters(savedFilteredMovies);
+    if (isCheckedSaved) { setSavedMoviesAfterFilters(savedFilteredAndChekedMovies) }
+    else setSavedMoviesAfterFilters(savedFilteredMovies);
+    // console.log(savedMoviesAfterFilters);
   };
 
-  // useEffect(() => {
-  //   handleSavedFilterCheckbox();
-  // }, [isCheckedSaved]);
+  useEffect(() => {
+    handleSavedFilterCheckbox();
+    // console.log(savedMoviesAfterFilters);
+  }, []);
 
   // function setSavedMoviesForShow() {
   //   isCheckedSaved ? setSavedMoviesAfterFilters(savedFilteredMovies) : setSavedMoviesAfterFilters(savedFilteredAndChekedMovies);
   // }
 
   useEffect(() => {
+    // console.log(isCheckedSaved);
     handleSavedFilterCheckbox();
+    // console.log(savedMoviesAfterFilters);
   }, []);
 
   return (
@@ -324,11 +332,13 @@ export default function App() {
               <HeaderMain
               />
               <Profile
-                currentUser={currentUser}
                 onProfileUpdate={handleProfileUpdate}
                 onLogout={handleLogOut}
                 isSuccess={isSuccess}
+                isOpen={isInfoTooltipOpen}
                 loggedIn={loggedIn}
+                onClose={closePopup}
+                updateErr={updateErr}
               />
             </RequireAuth>
           }
@@ -351,7 +361,7 @@ export default function App() {
             <RequireAuth currentUser={currentUser}>
               <HeaderMain />
               <SavedMovies
-                savedMovies={!isCheckedSaved ? savedFilteredMovies : savedFilteredAndChekedMovies}
+                savedMovies={savedMoviesAfterFilters}
                 onDelete={handleDeleteMovieClick}
                 onSavedFilter={handleSavedFilteredMovies}
                 onSavedFilterCheckBox={handleSavedFilterCheckbox}

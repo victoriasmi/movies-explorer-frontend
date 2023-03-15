@@ -5,9 +5,9 @@ import { Route, Navigate, useLocation } from 'react-router-dom';
 const RequireAuth = ({ children}) => {
   const location = useLocation();
   // const currentUser = React.useContext.CurrentUserContext;
-  const user = localStorage.getItem("userData");
+  const user = localStorage.getItem("token");
   // const currentUser = useContext(CurrentUserContext);
-  console.log(user);
+  // console.log(user);
   // console.log(currentUser);
   if(!user){
     // console.log(currentUser);

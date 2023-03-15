@@ -62,7 +62,7 @@ export default function MoviesCard(props) {
           </div>
           <button className={`element__save-button ${isSaved && "element__save-button_type_active"}`} type="button" onClick={isSaved ? handleDeleteClick : handleSaveClick}></button>
         </div>
-        <Link to={props.movie.trailerLink} target="_blank"><img className="element__image" src={`https://api.nomoreparties.co${props.movie.image.url}`} alt="постер" /></Link>
+        <Link to={props.movie.trailerLink} target="_blank" rel="noreferrer noopener"><img className="element__image" src={`https://api.nomoreparties.co${props.movie.image.url}`} alt="постер" /></Link>
       </li>
     </>
   )

@@ -6,6 +6,7 @@ export default function MoviesCardList(props) {
   const [moviesPerPage, setmoviesPerPage] = useState([]);
 
   // const savedMovies = props.savedMovies;
+  console.log(props.movies);
 
   // function checkSaved() {
   //   const result = props.movies.map((movie) => (props.savedMovies.filter(m => { return m.id === movie.id })))
@@ -20,13 +21,14 @@ export default function MoviesCardList(props) {
   // // observer.observe(page);
   // const observer = new ResizeObserver(entries => {
   //   const pageElement = entries[0];
-  //   if(pageElement.contentRect.width >= 1280){
+  //   if (pageElement.contentRect.width >= 1280) {
   //     setmoviesPerPage(12);
-  //   } else if(pageElement.contentRect.width >= 678){
+  //   } else if (pageElement.contentRect.width >= 678) {
   //     setmoviesPerPage(8);
   //   } else setmoviesPerPage(5);
   //   console.log(moviesPerPage);
   // });
+
   // observer.observe(page);
 
   // // observer.observe(page);
@@ -34,13 +36,13 @@ export default function MoviesCardList(props) {
   // console.log(allMovies);
 
   // function Pagination(){
-   
+
   // }
 
   return (
     <>
       <ul className="elements">
-        {props.movies.slice(0, 5).map((movie) => (
+        {props.movies.map((movie) => (
           <MovieCard
             key={movie._id}
             isSavedMo
