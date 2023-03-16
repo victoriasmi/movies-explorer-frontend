@@ -19,19 +19,21 @@ import { moviesApi } from '../../utils/MoviesApi'
 import { auth } from '../../utils/Auth'
 import { mainApi } from '../../utils/MainApi'
 import { render } from '@testing-library/react';
+const { shortFilmDuration } = require('../../constants');
 
 export default function App() {
 
   const [currentUser, setCurrentUser] = useState({});
   const [movies, setMovies] = useState([]);
   const [filteredMovies, setfilteredMovies] = useState([]);
-  // const [searchQueryResult, setSearchQueryResult] = useState([]);
+  // const [searchQuery, setSearchQuery] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [savedMoviesAfterFilters, setSavedMoviesAfterFilters] = useState([]);
   const [isLoaded, setIsLoaded] = useState(true);
   const [isError, setIsError] = useState(false);
   const [searchQuerySaved, setSearchQuerySaved] = useState("");
   const [isCheckedSaved, setIsCheckedSaved] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
@@ -150,6 +152,7 @@ export default function App() {
     setLoggedIn(false);
     localStorage.removeItem("userData");
     localStorage.removeItem("searchQueryResult");
+    localStorage.removeItem("input");
     navigate("/");
   };
 
@@ -213,19 +216,20 @@ export default function App() {
     handleDeleteMovieClick(movieToDelete);
   }
 
-  function handleFilterCheckbox(isChecked) {
-    // console.log(isChecked);
+  function handleFilterCheckbox(checked) {
+    setIsChecked(checked)
+    console.log(isChecked);
     if (isChecked) {
-      const shortFilms = movies.filter(movie => movie.duration <= 40)
+      const shortFilms = movies.filter(movie => movie.duration <= shortFilmDuration)
       // const shortFilmsSaved = savedMovies.filter(movie => movie.duration <= 40)
-      // console.log(shortFilms);
+      console.log(shortFilms);
       setMovies(shortFilms);
       // setSavedMovies(shortFilmsSaved);
     }
   }
 
   function handleFilteredMovies(e) {
-    // console.log(e);
+    console.log(e);
     setIsLoaded(false);
     handleFilterCheckbox();
     const result = movies.filter(movie => movie.nameRU.toLowerCase().includes(e.toLowerCase()));
@@ -241,7 +245,6 @@ export default function App() {
   }
 
   useEffect(() => {
-    console.log(localStorage.getItem("searchQueryResult"));
     const resultFromStorage = localStorage.getItem("searchQueryResult");
     const parsedResultFronStorage = JSON.parse(resultFromStorage);
     console.log(parsedResultFronStorage);

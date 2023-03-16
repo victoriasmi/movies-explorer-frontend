@@ -6,7 +6,7 @@
   grid-template-columns: repeat(auto-fit, minmax(339px, 1fr));
   grid-template-rows: auto;
   gap: 30px 24px;
-  margin: 80px auto 0 auto;
+  margin: 80px auto 50px auto;
   list-style: none;
   padding: 0;
 }

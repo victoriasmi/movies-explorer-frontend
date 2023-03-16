@@ -69,6 +69,7 @@
 @import url(./blocks/elements/__saved/elements__saved.css);
 @import url(./blocks/loader/loader.css);
 @import url(./blocks/loader/__load-button/loader__load-button.css);
+@import url(./blocks/loader/__load-button/_type/_active/loader__load-button_type_active.css);
 @import url(./blocks/search/search.css);
 @import url(./blocks/search-form/search-form.css);
 @import url(./blocks/search-form/__form/search-form__form.css);
