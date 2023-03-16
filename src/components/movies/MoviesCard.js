@@ -13,19 +13,19 @@ export default function MoviesCard(props) {
   }, []);
 
   function handleSaveClick() {
-    console.log(isSaved);
+    // console.log(isSaved);
     setisSaved(true);
     localStorage.setItem("isSaved", true);
-    console.log(isSaved);
-    console.log(props.movie);
-    props.onSave(props.movie)
+    // console.log(isSaved);
+    // console.log(props.movie);
+    // props.onSave(props.movie)
   }
 
   function handleDeleteClick() {
     setisSaved(false);
     localStorage.setItem("isSaved", false);
-    console.log(isSaved);
-    console.log(props.movie);
+    // console.log(isSaved);
+    // console.log(props.movie);
     props.onDelete(props.movie)
   }
 

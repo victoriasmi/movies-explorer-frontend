@@ -62,7 +62,7 @@ export default function App() {
         if (res.token) {
           localStorage.setItem("token", res.token);
           setLoggedIn(true);
-          console.log("успешный логин, получили токен");
+          // console.log("успешный логин, получили токен");
           authInfo(res.token);
           getMovies();
           getSavedMovies();
@@ -88,11 +88,11 @@ export default function App() {
     auth.getInfo(token)
       .then((data) => {
         setCurrentUser(data.data);
-        console.log("запросили данные для пользователя токеном после логина");
-        console.log(data.data);
-        console.log(currentUser);
+        // console.log("запросили данные для пользователя токеном после логина");
+        // console.log(data.data);
+        // console.log(currentUser);
         localStorage.setItem("userData", data.data);
-        console.log(localStorage.getItem("userData"));
+        // console.log(localStorage.getItem("userData"));
         // setLoggedIn(true);
       })
       .catch((err) => {
@@ -107,9 +107,9 @@ export default function App() {
         setLoggedIn(true);
         console.log("запросили getprofileinfo с токеном в локалсторадж");
         localStorage.setItem("userData", userData.data);
-        console.log(localStorage.getItem("userData"));
-        console.log(userData.data);
-        console.log(currentUser);
+        // console.log(localStorage.getItem("userData"));
+        // console.log(userData.data);
+        // console.log(currentUser);
         render();
       })
       .catch((err) => {
@@ -120,15 +120,15 @@ export default function App() {
   function handleProfileUpdate(data) {
     mainApi.editProfileInfo(data)
       .then((data) => {
-        console.log("запросили данные после обновления профиля");
+        // console.log("запросили данные после обновления профиля");
         setCurrentUser(data.data);
-        console.log(data.data);
+        // console.log(data.data);
         setLoggedIn(true);
         setIsSuccess(true);
         setIsInfoTooltipOpen(true);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setIsSuccess(false);
         setUpdateErr(err);
         setIsInfoTooltipOpen(true);
@@ -148,7 +148,7 @@ export default function App() {
   function handleLogOut() {
     localStorage.removeItem("token");
     setCurrentUser(null);
-    console.log(currentUser);
+    // console.log(currentUser);
     setLoggedIn(false);
     localStorage.removeItem("userData");
     localStorage.removeItem("searchQueryResult");
@@ -222,7 +222,7 @@ export default function App() {
     if (isChecked) {
       const shortFilms = movies.filter(movie => movie.duration <= shortFilmDuration)
       // const shortFilmsSaved = savedMovies.filter(movie => movie.duration <= 40)
-      console.log(shortFilms);
+      // console.log(shortFilms);
       setMovies(shortFilms);
       // setSavedMovies(shortFilmsSaved);
     }
@@ -233,8 +233,8 @@ export default function App() {
     setIsLoaded(false);
     handleFilterCheckbox();
     const result = movies.filter(movie => movie.nameRU.toLowerCase().includes(e.toLowerCase()));
-    console.log(result);
-    window.localStorage.setItem("searchQueryResult", JSON.stringify(result));
+    // console.log(result);
+    localStorage.setItem("searchQueryResult", JSON.stringify(result));
     // const resultFromStorage = localStorage.getItem("searchQueryResult")
     // console.log(resultFromStorage);
     setfilteredMovies(result);
@@ -244,6 +244,16 @@ export default function App() {
     } else setIsError(false);
   }
 
+  // useEffect(() => {
+  //   handleFilterCheckbox();
+  //   // console.log(savedMoviesAfterFilters);
+  // }, []);
+
+  useEffect(() => {
+    handleFilteredMovies();
+    // console.log(savedMoviesAfterFilters);
+  }, []);
+
   useEffect(() => {
     const resultFromStorage = localStorage.getItem("searchQueryResult");
     const parsedResultFronStorage = JSON.parse(resultFromStorage);
@@ -252,43 +262,43 @@ export default function App() {
   }, []);
 
   const handleSavedFilteredMovies = (e) => {
-    console.log(e);
+    // console.log(e);
     setSearchQuerySaved(e);
-    console.log(searchQuerySaved);
+    // console.log(searchQuerySaved);
   }
 
   useEffect(() => {
     handleSavedFilterCheckbox();
-    console.log(savedMoviesAfterFilters);
-  }, [searchQuerySaved]);
+    // console.log(savedMoviesAfterFilters);
+  }, []);
 
   function handleSavedFilterCheckbox(isChecked) {
     console.log(isChecked);
     setIsCheckedSaved(isChecked);
     const savedFilteredMovies = savedMovies.filter(movie => {
-      console.log(searchQuerySaved);
+      // console.log(searchQuerySaved);
       return movie.nameRU.toLowerCase().includes(searchQuerySaved.toLowerCase())
     });
-    console.log(savedFilteredMovies);
+    // console.log(savedFilteredMovies);
 
     const savedFilteredAndChekedMovies = savedFilteredMovies.filter(movie => {
       return movie.duration <= 40;
     });
-    console.log(savedFilteredAndChekedMovies);
+    // console.log(savedFilteredAndChekedMovies);
     if (isCheckedSaved) {
       setSavedMoviesAfterFilters(savedFilteredAndChekedMovies)
     }
     else setSavedMoviesAfterFilters(savedFilteredMovies);
-    console.log(savedFilteredMovies);
-    console.log(savedMoviesAfterFilters);
-    console.log(savedFilteredAndChekedMovies);
+    // console.log(savedFilteredMovies);
+    // console.log(savedMoviesAfterFilters);
+    // console.log(savedFilteredAndChekedMovies);
   };
 
   useEffect(() => {
     // console.log(isCheckedSaved);
     handleSavedFilterCheckbox();
     // console.log(savedMoviesAfterFilters);
-  }, [isCheckedSaved]);
+  }, []);
 
   return (
     <div className="page">

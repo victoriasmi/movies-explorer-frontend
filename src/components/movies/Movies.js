@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import MoviesCardList from './MoviesCardList';
 import SearchForm from './SearchForm';
 import FilterCheckbox from './FilterCheckbox';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+// import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import Preloader from './Preloader';
 
 export default function Movies(props) {

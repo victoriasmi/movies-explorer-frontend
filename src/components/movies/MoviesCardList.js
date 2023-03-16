@@ -8,7 +8,7 @@ export default function MoviesCardList(props) {
 
   const [moviesPerPage, setmoviesPerPage] = useState([]);
   const [moviesWithPagination, setMoviesWithPagination] = useState([]);
-  const [moviesWithPaginationLength, setMoviesWithPaginationLength] = useState([]);
+  // const [moviesWithPaginationLength, setMoviesWithPaginationLength] = useState([]);
   const [isLoadButtonActive, setIsLoadButtonActive] = useState(false);
 
   // const savedMovies = props.savedMovies;
@@ -41,19 +41,19 @@ export default function MoviesCardList(props) {
   useEffect(() => {
     pagination = props.movies.slice(0, moviesPerPage);
     setMoviesWithPagination(pagination);
-    console.log(moviesWithPagination);
-    setMoviesWithPaginationLength(moviesWithPagination.length);
-    console.log(moviesWithPaginationLength);
+    // console.log(moviesWithPagination);
+    // setMoviesWithPaginationLength(moviesWithPagination.length);
+    // console.log(moviesWithPaginationLength);
   }, [props.movies]);
 
-  console.log(moviesWithPagination);
+  // console.log(moviesWithPagination);
 
   useEffect(() => {
-    setIsLoadButtonActive((props.movies.length > moviesWithPaginationLength));
-    console.log(isLoadButtonActive);
-    console.log(props.movies.length);
-    console.log(moviesWithPaginationLength);
-  }, [setMoviesWithPagination]);
+    setIsLoadButtonActive((props.movies.length > moviesPerPage));
+    // console.log(isLoadButtonActive);
+    // console.log(props.movies.length);
+    // console.log(moviesWithPaginationLength);
+  }, [props.movies]);
 
   return (
     <>
@@ -75,7 +75,7 @@ export default function MoviesCardList(props) {
             const newPagination = props.movies.diff(moviesWithPagination);
             const newPaginationSliced = newPagination.slice(0, moviesPerPage);
             setMoviesWithPagination(moviesWithPagination.concat(newPaginationSliced));
-            setMoviesWithPaginationLength(moviesWithPagination.length);
+            // setMoviesWithPaginationLength(moviesWithPagination.length);
           }} >Еще</button>
       </div>
     </>
