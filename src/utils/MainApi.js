@@ -61,7 +61,6 @@ class MainApi {
   saveMovie(data) {
     return fetch(`${this._baseUrl}/movies`, {
       method: "POST",
-      // Метод PATCH обычно используют для обновления сущностей, уже существующих на сервере
       body: JSON.stringify({
         country: data.country,
         director: data.director,
@@ -83,13 +82,8 @@ class MainApi {
         return this._getResponseData(res);
       })
       .then((data) => {
-        // console.log(data);
         return data;
       })
-    // .then((data) => {
-    //   // console.log(data);
-    //   return data;
-
   }
 
   getSavedMovies() {
@@ -103,13 +97,8 @@ class MainApi {
         return this._getResponseData(res);
       })
       .then((data) => {
-        // console.log(data);
         return data;
       })
-    // .then((data) => {
-    //   // console.log(data);
-    //   return data;
-    // })
   }
 
   deleteMovie(_id) {

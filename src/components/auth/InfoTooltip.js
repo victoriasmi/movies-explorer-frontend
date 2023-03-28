@@ -7,7 +7,7 @@ export default function InfoTooltip({ isOpen, onClose, isSuccess, updateErr }) {
   const [errText, setErrText] = useState("");
 
   function checkErrText(){
-    if (!updateErr.includes(409)){
+    if (updateErr.includes(409)){
       setErrText("Пользователь с таким email уже существует");
     } else setErrText("Что-то пошло не так, попробуйте еще раз.");
   };
@@ -27,7 +27,7 @@ export default function InfoTooltip({ isOpen, onClose, isSuccess, updateErr }) {
             alt={isSuccess ? "Успех" : "Неудача" }
           />
           <p className="popup__title popup__title_type_info-tool-tip">
-            {isSuccess ? "Данные профиля успешно обновлены!" : errText }
+            {isSuccess ? "Успех!" : errText }
           </p>
         </form>
       </div>

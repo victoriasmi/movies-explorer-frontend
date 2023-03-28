@@ -1,23 +1,35 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { useForm } from 'react-hook-form';
 import InfoTooltip from './InfoTooltip';
 
 export default function Profile(props) {
 
-  const { register, handleSubmit,
-    formState: { errors } } = useForm();
-
   const currentUser = useContext(CurrentUserContext);
-  console.log(currentUser);
-  console.log(currentUser.name);
-  console.log(currentUser.email);
+  // console.log(currentUser);
 
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
-  const [isDisabled, setIsDisabled] = useState(true);
-  // const [isSuccess, setIsSuccess] = useState("");
+
+  useEffect(() => {
+    setName(currentUser.name);
+    setEmail(currentUser.email);
+  }, [currentUser]);
+
+  const { register, reset, handleSubmit,
+    formState: { errors } } = useForm({
+      mode: "all",
+      reValidateMode: 'onChange',
+      defaultValues: {
+        name: currentUser.name,
+        email: currentUser.email,
+      }
+    });
+
+    useEffect(() => {
+      reset({name:name, email:email});
+    },[name, email]);
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -27,34 +39,19 @@ export default function Profile(props) {
     setName(e.target.value);
   }
 
-  useEffect(() => {
-    setName(currentUser.name);
-    setEmail(currentUser.email);
-    console.log("запросили данные в профиле из current");
-    console.log(name, email);
-  }, [currentUser]);
-
-  console.log(name);
-  console.log(email);
-
-  function handleProfileChange(e) {
-    setIsDisabled(false);
-  }
-
   function handleProfileUpdate(e) {
     props.onProfileUpdate({
       name: name,
       email: email,
     });
-    if (!props.isOpen) {
-      setIsDisabled(true);
-    }
   };
 
   function handleLogOut(e) {
     e.preventDefault()
     props.onLogout();
   }
+
+  const isUpdated = name !== currentUser.name || email !== currentUser.email;
 
   return (
     <>
@@ -66,24 +63,30 @@ export default function Profile(props) {
       />
       <main className="profile">
         <h1 className="profile__title">Привет, {currentUser.name}!</h1>
-        {/* <form className="profile__info" onSubmit={handleProfileUpdate}> */}
         <form className="profile__info" onSubmit={handleSubmit(handleProfileUpdate)}>
           <div className="profile__info-block">
             <label className="profile__form-title">Имя</label>
-            <input className={`profile__form-info ${!isDisabled && "profile__form-info_type_active"}`} value={name} name="name" type="text" onInput={handleNameChange} disabled={isDisabled}
+            <input className="profile__form-info profile__form-info_type_active" name="name" type="text" onInput={handleNameChange}
               {...register('name', {
-                required: 'Необходимо внести изменения',
-                minLength: 2,
-                maxLength: 20
+                required: 'Это поле не может быть пустым',
+                minLength: {
+                  value: 2,
+                  message: "Минимум 2 символа"
+                },
+                maxLength: {
+                  value: 20,
+                  message: "Максимум 20 символов"
+                },
               })}
             />
           </div>
-          <span className="error">{errors?.name && errors.name.message}</span>
+          <span className="error">{errors?.name && <p>{errors?.name?.message || "Ошибка ввода"}</p>}</span>
           <div className="profile__info-block">
             <label className="profile__form-title">E-mail</label>
-            <input className={`profile__form-info ${!isDisabled && "profile__form-info_type_active"}`} value={email ?? ""} name="email" type="text" onInput={handleEmailChange} disabled={isDisabled}
+            <input className="profile__form-info profile__form-info_type_active" name="email" type="text" onInput={handleEmailChange}
+              //  value={email ?? ""} onChange={()=> reset({ name: name })}  defaultValue={currentUser.email ?? ""}
               {...register('email', {
-                required: 'Необходимо внести изменения',
+                required: 'Это поле не может быть пустым',
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                   message: 'Поле email заполнено неправильно',
@@ -91,10 +94,9 @@ export default function Profile(props) {
               })}
             />
           </div>
-          <span className="error">{errors?.email && errors.email.message}</span>
+          <span className="error">{errors?.email && <p>{errors?.name?.message || "Ошибка ввода"}</p>}</span>
           <div className="profile__links">
-            <button className={`profile__link ${isDisabled && "profile__link_type_active"}`} onClick={handleProfileChange}>Редактировать</button>
-            <button className={`profile__link ${!isDisabled && "profile__link_type_active"}`} type="submit">Сохранить</button>
+            <button className={`profile__link ${isUpdated && "profile__link_type_active"}`} type="submit" disabled={!isUpdated}>Редактировать</button>
             <Link to="/" className="profile__link profile__link_type_red" onClick={handleLogOut}>Выйти из аккаунта</Link>
           </div>
         </form>

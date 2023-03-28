@@ -7,7 +7,7 @@ export default function SavedFilterCheckbox(props) {
 
   useEffect(() => {
     props.onSavedFilterCheckBox(isChecked);
-  }, [])
+  }, [isChecked])
 
   function handleCheckClick(){
     setisChecked(true);

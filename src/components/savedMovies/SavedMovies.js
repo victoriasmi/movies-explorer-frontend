@@ -16,12 +16,18 @@ export default function SavedMovies(props) {
           onSavedFilterCheckBox={props.onSavedFilterCheckBox}
         />
       </div>
+      <div className={`error__filter ${props.isSavedFilterError && "error__filter_type_active"}`}>
+        <h1 className="error__filter-text">Ничего не найдено</h1>
+      </div>
       {/* <section className="proloader__box">
         <Preloader />
       </section> */}
       <section className="">
         <SavedMoviesCardList
+          isSavedFilterError={props.isSavedFilterError}
           savedMovies={props.savedMovies}
+          savedMoviesAfterFilters={props.savedMoviesAfterFilters}
+          onSavedFilterCheckBox={props.onSavedFilterCheckBox}
           onDelete={props.onDelete}
         />
       </section>

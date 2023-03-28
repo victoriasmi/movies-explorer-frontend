@@ -9,48 +9,37 @@ export default function MoviesCard(props) {
   const [isSaved, setisSaved] = useState(false);
 
   useEffect(() => {
-    props.savedMovies.filter(m => { if (m.id === props.movie.id && m.owner === currentUser._id) { setisSaved(true) } });
-  }, []);
+    if (props.savedMovies.length !== 0) {
+      props.savedMovies.filter(m => {
+        if (m.id === props.movie.id && m.owner === currentUser._id) {
+          setisSaved(true)
+        }
+      });
+    } 
+  }, [props.savedMovies]);
 
   function handleSaveClick() {
-    // console.log(isSaved);
     setisSaved(true);
     localStorage.setItem("isSaved", true);
-    // console.log(isSaved);
-    // console.log(props.movie);
-    // props.onSave(props.movie)
+    props.onSave(props.movie);
   }
 
   function handleDeleteClick() {
     setisSaved(false);
     localStorage.setItem("isSaved", false);
-    // console.log(isSaved);
-    // console.log(props.movie);
     props.onDelete(props.movie)
   }
 
   function calcDuration() {
     const duration = props.movie.duration; // in min
-    // console.log(duration);
+
     const hours = duration / 60;
     const rhours = Math.floor(hours);
-    // console.log(hours);
-    // console.log(rhours);
     const minutes = (hours - rhours) * 60;
     const rminutes = Math.round(minutes);
-    // console.log(minutes);
-    // console.log(rminutes);
     const newDuration = rhours + "ч " + rminutes + "м ";
-    // console.log(newDuration);
     return newDuration;
   }
-
-  // function toHoursAndMinutes(totalMinutes) {
-  //   const hours = Math.floor(totalMinutes / 60);
-  //   const minutes = totalMinutes % 60;
-  
-  //   return { hours, minutes };
-  // }
 
   return (
     <>

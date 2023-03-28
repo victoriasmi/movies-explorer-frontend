@@ -18,7 +18,7 @@
 
 .loader__load-button:hover {
   opacity: 20%;
-  /* transition: 0.1s; */
+  transition: 0.1s;
 }
 
 @media (max-width: 480px) {

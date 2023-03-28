@@ -20,16 +20,12 @@ class Auth {
       body: JSON.stringify({ name, email, password })
     })
       .then((res) => {
-        return res.json();
+        return this._getResponseData(res);
       })
       .then((data) => {
         console.log(data);
         return data;
       })
-      // .then((data) => {
-      //   console.log(data);
-      //   return data;
-      // })
   }
 
   authorize(email, password) {
@@ -48,7 +44,6 @@ class Auth {
         return data;
       })
       .then((data) => {
-        // console.log(data);
         return data;
       })
   }
@@ -68,9 +63,6 @@ class Auth {
       .then((data) => {
         return data;
       })
-      // .then((data) => {
-      //   return data;
-      // })
   }
 }
 

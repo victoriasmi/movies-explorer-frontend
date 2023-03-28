@@ -5,8 +5,8 @@ import { useForm } from 'react-hook-form';
 
 export default function Login(props) {
 
-  const navigate = useNavigate();
-  const location = useLocation();
+  // const navigate = useNavigate();
+  // const location = useLocation();
 
   const { register, handleSubmit,
     formState: { errors } } = useForm();
@@ -47,11 +47,9 @@ export default function Login(props) {
             />
             <span className="error">{errors?.email && errors.email.message}</span>
             <p className="auth__input-title">Пароль</p>
-            <input className="auth__input auth__form_type_register" id="password-input" type="text" name="password" value={password ?? ""} onInput={handlePasswordChange}
+            <input className="auth__input auth__form_type_register" id="password-input" type="password" name="password" value={password ?? ""} onInput={handlePasswordChange}
               {...register('password', {
                 required: 'Поле не может быть пустым',
-                minLength: 2,
-                maxLength: 20
               })}
             />
             <span className="error">{errors?.password && errors.password.message}</span>
