@@ -45,7 +45,7 @@ export default function App() {
       .then((data) => {
         if (data.email) {
           handleLoginSubmit(email, password);
-          navigate('/movies');
+          // navigate('/movies');
         }
         // else if(!data.email) {
         //   alert(data.message);
@@ -250,7 +250,8 @@ export default function App() {
     });
     if (savedFilteredMovies.length === 0) {
       setIsSavedFilterError(true);
-    } else if (savedFilteredMovies.length !== 0) { setIsSavedFilterError(false); }
+    } else setIsSavedFilterError(false); 
+
     if (isCheckedSaved) {
       const savedFilteredAndChekedMovies = savedFilteredMovies.filter(movie => {
         return movie.duration <= 40;
@@ -258,17 +259,17 @@ export default function App() {
       setSavedMoviesAfterFilters(savedFilteredAndChekedMovies)
       if (savedFilteredAndChekedMovies.length === 0) {
         setIsSavedFilterError(true);
-      } else if (savedFilteredAndChekedMovies.length !== 0) {
-        setIsSavedFilterError(false);
-      }
+      } else setIsSavedFilterError(false);
     }
     else setSavedMoviesAfterFilters(savedFilteredMovies);
+    console.log(isSavedFilterError);
   };
 
 
   function handleSavedFilterCheckbox(isChecked) {
     setIsCheckedSaved(isChecked);
     setIsSavedFilterError(false);
+    console.log(isSavedFilterError);
   };
 
   return (

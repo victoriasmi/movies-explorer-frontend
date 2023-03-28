@@ -6,20 +6,15 @@ export default function SavedMoviesCardList(props) {
   const [savedMoviesState, setSavedMoviesState] = useState([]);
 
   useEffect(() => {
-    if (!props.isSavedFilterError) {
-    if (props.savedMoviesAfterFilters.length === 0) {
+    if (props.savedMoviesAfterFilters.length !== 0) {
+      setSavedMoviesState(props.savedMoviesAfterFilters);
+    } else if (props.savedMoviesAfterFilters.length === 0) {
       setSavedMoviesState(props.savedMovies);
-
-    } else {
-        // console.log("из поиска");
-        // console.log(props.savedMoviesAfterFilters);
-        setSavedMoviesState(props.savedMoviesAfterFilters);
-      }
     } 
-    else if (props.isSavedFilterError) {
+    if (props.isSavedFilterError === true) {
       setSavedMoviesState([]);
     }
-  }, [props.savedMovies, props.savedMoviesAfterFilters, props.isSavedFilterError]);
+  }, [props.savedMoviesAfterFilters, props.savedMovies, props.isSavedFilterError]);
 
   return (
     <ul className="elements elements__saved">

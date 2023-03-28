@@ -14,7 +14,8 @@ export default function InfoTooltip({ isOpen, onClose, isSuccess, updateErr }) {
 
   useEffect(() => {
     checkErrText();
-  }, []);
+    // console.log(updateErr);
+  }, [updateErr]);
 
   return (
     <div className={`popup popup_type_info-tool-tip ${isOpen && "popup_opened"}`}>
