@@ -173,24 +173,31 @@ export default function App() {
     handleFilterCheckbox();
     const result = movies.filter(movie => movie.nameRU.toLowerCase().includes(query.toLowerCase()));
     if (isChecked) {
-      const shortFilms = movies.filter(movie => movie.duration <= shortFilmDuration);
+      const shortFilms = result.filter(movie => movie.duration <= shortFilmDuration);
       setfilteredMovies(shortFilms);
+      console.log(shortFilms.length);
       localStorage.setItem("searchQueryResult", JSON.stringify(shortFilms));
       // console.log("передали отфильтрованный и чекбокс массив");
       setIsLoaded(true);
+      if (shortFilms.length === 0 && isFetchError === false) {
+        setIsError(true);
+        console.log(isError);
+      } else {
+        setIsError(false);
+        console.log(isError);
+      }
     } else {
       localStorage.setItem("searchQueryResult", JSON.stringify(result));
+      if (result.length === 0 && isFetchError === false) {
+        setIsError(true);
+        console.log(isError);
+      } else {
+        setIsError(false);
+        console.log(isError);
+      }
       setfilteredMovies(result);
       // console.log("передали отфильтрованный массив");
       setIsLoaded(true);
-    }
-    if (result.length === 0) {
-      if (!isFetchError) {
-        setIsError(true);
-      }
-    } else {
-      setIsError(false);
-      setIsFetchError(false);
     }
   };
 
@@ -250,7 +257,7 @@ export default function App() {
     });
     if (savedFilteredMovies.length === 0) {
       setIsSavedFilterError(true);
-    } else setIsSavedFilterError(false); 
+    } else setIsSavedFilterError(false);
 
     if (isCheckedSaved) {
       const savedFilteredAndChekedMovies = savedFilteredMovies.filter(movie => {

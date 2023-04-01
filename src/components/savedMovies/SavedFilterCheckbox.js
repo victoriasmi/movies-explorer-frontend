@@ -11,13 +11,11 @@ export default function SavedFilterCheckbox(props) {
 
   function handleCheckClick(){
     setisChecked(true);
-    localStorage.setItem("isChecked", isChecked);
     console.log(isChecked);
   }
 
   function handleCheckAndClick(){
     setisChecked(false);
-    localStorage.setItem("isChecked", isChecked);
     console.log(isChecked);
   }
 
