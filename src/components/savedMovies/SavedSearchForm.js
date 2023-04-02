@@ -22,8 +22,18 @@ export default function SavedSearchForm(props) {
       <form className="search-form">
         <div className="search__block-input">
           <img className="search__icon" src={searchIcon} alt="поиск"></img>
-          <input className="search__input" id="saved-movie-input" type="saved-movie" name="saved-movie"
-            minLength="2" maxLength="30" placeholder="Фильм" value={savedInput} onChange={handleSavedInputChange} required />
+          <input 
+          className="search__input" 
+          id="saved-movie-input" 
+          type="saved-movie" 
+          name="saved-movie"
+          minLength="2" 
+          maxLength="30" 
+          placeholder="Фильм" 
+          value={savedInput} 
+          disabled={!props.isSavedLoaded}
+          onChange={handleSavedInputChange} 
+          required />
         </div>
         <button className="search-form__search-button" type="submit" onClick={handleSavedFilter} ></button>
       </form>

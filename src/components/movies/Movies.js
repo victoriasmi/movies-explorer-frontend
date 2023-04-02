@@ -12,6 +12,7 @@ export default function Movies(props) {
       <div className="movies__finder">
         <SearchForm
           onFilter={props.onFilter}
+          isLoaded={props.isLoaded}
         />
         <FilterCheckbox
           onFilterCheckBox={props.onFilterCheckBox}

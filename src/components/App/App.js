@@ -29,18 +29,21 @@ export default function App() {
   const [savedMovies, setSavedMovies] = useState([]);
   const [savedMoviesAfterFilters, setSavedMoviesAfterFilters] = useState([]);
   const [isLoaded, setIsLoaded] = useState(true);
+  const [isSavedLoaded, setIsSavedLoaded] = useState(true);
   const [isError, setIsError] = useState(false);
   const [isFetchError, setIsFetchError] = useState(false);
   const [isSavedFilterError, setIsSavedFilterError] = useState(false);
   const [isCheckedSaved, setIsCheckedSaved] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [updateErr, setUpdateErr] = useState("");
   const navigate = useNavigate();
 
   function handleRegisterSubmit(name, email, password) {
+    setIsLoading(true);
     auth.register(name, email, password)
       .then((data) => {
         if (data.email) {
@@ -58,9 +61,11 @@ export default function App() {
         setUpdateErr(err);
         navigate('/signup');
       })
+      .finally(() => setIsLoading(false));
   }
 
   function handleLoginSubmit(email, password) {
+    setIsLoading(true);
     auth.authorize(email, password)
       .then((res) => {
         // console.log(res);
@@ -80,6 +85,7 @@ export default function App() {
       .catch((err) => {
         console.log(err);
       })
+      .finally(() => setIsLoading(false));
   }
 
   useEffect(() => {
@@ -107,6 +113,7 @@ export default function App() {
   };
 
   function handleProfileUpdate(data) {
+    setIsLoading(true);
     mainApi.editProfileInfo(data)
       .then((data) => {
         // console.log("запросили данные для пользователя после обновления");
@@ -124,6 +131,7 @@ export default function App() {
         setUpdateErr(err);
         setIsInfoTooltipOpen(true);
       })
+      .finally(() => setIsLoading(false));
   };
 
   function handleLogOut() {
@@ -248,6 +256,7 @@ export default function App() {
   };
 
   function handleSavedFilteredMovies(e) {
+    setIsSavedLoaded(false);
     // console.log(e);
     handleSavedFilterCheckbox();
     // console.log(isCheckedSaved);
@@ -269,6 +278,7 @@ export default function App() {
     }
     else setSavedMoviesAfterFilters(savedFilteredMovies);
     console.log(isSavedFilterError);
+    setIsSavedLoaded(true);
   };
 
 
@@ -325,6 +335,7 @@ export default function App() {
                 loggedIn={loggedIn}
                 onClose={closePopup}
                 updateErr={updateErr}
+                isLoading={isLoading}
               />
             </RequireAuth>
           }
@@ -357,6 +368,7 @@ export default function App() {
                 onSavedFilter={handleSavedFilteredMovies}
                 onSavedFilterCheckBox={handleSavedFilterCheckbox}
                 isSavedFilterError={isSavedFilterError}
+                isSavedLoaded={isSavedLoaded}
               /> <Footer /> </RequireAuth>} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

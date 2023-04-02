@@ -66,7 +66,12 @@ export default function Profile(props) {
         <form className="profile__info" onSubmit={handleSubmit(handleProfileUpdate)}>
           <div className="profile__info-block">
             <label className="profile__form-title">Имя</label>
-            <input className="profile__form-info profile__form-info_type_active" name="name" type="text" onInput={handleNameChange}
+            <input 
+            className="profile__form-info profile__form-info_type_active" 
+            name="name" 
+            type="text" 
+            disabled={props.isLoading} 
+            onInput={handleNameChange}
               {...register('name', {
                 required: 'Это поле не может быть пустым',
                 minLength: {
@@ -83,7 +88,12 @@ export default function Profile(props) {
           <span className="error">{errors?.name && <p>{errors?.name?.message || "Ошибка ввода"}</p>}</span>
           <div className="profile__info-block">
             <label className="profile__form-title">E-mail</label>
-            <input className="profile__form-info profile__form-info_type_active" name="email" type="text" onInput={handleEmailChange}
+            <input 
+            className="profile__form-info profile__form-info_type_active" 
+            name="email" 
+            type="text" 
+            onInput={handleEmailChange}
+            disabled={props.isLoading} 
               //  value={email ?? ""} onChange={()=> reset({ name: name })}  defaultValue={currentUser.email ?? ""}
               {...register('email', {
                 required: 'Это поле не может быть пустым',

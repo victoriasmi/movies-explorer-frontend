@@ -11,6 +11,7 @@ export default function SavedMovies(props) {
       <div className="movies__finder">
         <SavedSearchForm
           onSavedFilter={props.onSavedFilter}
+          isSavedLoaded={props.isSavedLoaded}
         />
         <SavedFilterCheckbox
           onSavedFilterCheckBox={props.onSavedFilterCheckBox}
