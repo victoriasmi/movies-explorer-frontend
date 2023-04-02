@@ -12,8 +12,7 @@ export default function MoviesCardList(props) {
   const [moviesWithPagination, setMoviesWithPagination] = useState([]);
   const [isLoadButtonActive, setIsLoadButtonActive] = useState(false);
 
-  console.log(props.movies);
-
+  // console.log(props.movies);
 
   useEffect(() => {
     if (props.movies.length !== 0) {
@@ -50,7 +49,7 @@ export default function MoviesCardList(props) {
   useEffect(() => {
     console.log(props.loggedIn);
     if (props.loggedIn === false){
-      console.log("незалогинен");
+      // console.log("незалогинен");
       setMoviesToCut([]);
       setMoviesWithPagination([]);
       setIsLoadButtonActive(false);
