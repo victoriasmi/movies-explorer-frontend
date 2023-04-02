@@ -99,7 +99,7 @@ export default function App() {
         const user = localStorage.getItem("userData");
         const userParsed = JSON.parse(user);
         setCurrentUser(userParsed);
-        setLoggedIn(true);
+        // setLoggedIn(true);
       })
       .catch((err) => {
         console.log(err);
@@ -114,7 +114,7 @@ export default function App() {
         const user = localStorage.getItem("userData");
         const userParsed = JSON.parse(user);
         setCurrentUser(userParsed);
-        setLoggedIn(true);
+        // setLoggedIn(true);
         setIsSuccess(true);
         setIsInfoTooltipOpen(true);
       })
@@ -148,7 +148,6 @@ export default function App() {
     moviesApi.getMovies()
       .then((movies) => {
         setMovies(movies);
-        setIsLoaded(true);
         setIsFetchError(false);
       })
       .catch((err) => {
@@ -345,6 +344,7 @@ export default function App() {
                 isError={isError}
                 isFetchError={isFetchError}
                 onFilterCheckBox={handleFilterCheckbox}
+                loggedIn={loggedIn}
               /> <Footer />
             </RequireAuth>} />
           <Route path="/saved-movies" element={

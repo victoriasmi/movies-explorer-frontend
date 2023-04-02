@@ -9,6 +9,7 @@ export default function SearchForm(props) {
     setInput(e.target.value);
     console.log(input);
   };
+  console.log(input);
 
   function handleFilter(e) {
     e.preventDefault()

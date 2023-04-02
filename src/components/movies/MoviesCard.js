@@ -1,34 +1,34 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useCallback } from 'react';
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 export default function MoviesCard(props) {
 
   const currentUser = React.useContext(CurrentUserContext);
-
   const [isSaved, setisSaved] = useState(false);
 
-  useEffect(() => {
-    if (props.savedMovies.length !== 0) {
-      props.savedMovies.filter(m => {
-        if (m.id === props.movie.id && m.owner === currentUser._id) {
-          setisSaved(true)
-        }
-      });
-    } 
-  }, [props.savedMovies]);
+  const movieSaveButtonClassName = (
+    `element__save-button ${isSaved ? 'element__save-button_type_active' : 'element__save-button'}`
+  );
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function handleSaveClick() {
     setisSaved(true);
-    localStorage.setItem("isSaved", true);
     props.onSave(props.movie);
-  }
+  };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function handleDeleteClick() {
     setisSaved(false);
-    localStorage.setItem("isSaved", false);
     props.onDelete(props.movie)
-  }
+  };
+
+  useEffect(() => {
+    // окрашиваем кнопку лайка, если он фильм нашелся в сохраненных
+    if (props.savedMovies.some((movie) => movie.owner === currentUser._id && movie.id === props.movie.id)) {
+      setisSaved(true);
+    } else setisSaved(false);
+  }, [props.savedMovies, props.movie, currentUser, isSaved, handleDeleteClick, handleSaveClick]);
 
   function calcDuration() {
     const duration = props.movie.duration; // in min
@@ -49,7 +49,7 @@ export default function MoviesCard(props) {
             <h2 className="element__title">{props.movie.nameRU}</h2>
             <p className="element__duration">{calcDuration()}</p>
           </div>
-          <button className={`element__save-button ${isSaved && "element__save-button_type_active"}`} type="button" onClick={isSaved ? handleDeleteClick : handleSaveClick}></button>
+          <button className={movieSaveButtonClassName} type="button" onClick={isSaved ? handleDeleteClick : handleSaveClick}></button>
         </div>
         <Link to={props.movie.trailerLink} target="_blank" rel="noreferrer noopener"><img className="element__image" src={`https://api.nomoreparties.co${props.movie.image.url}`} alt="постер" /></Link>
       </li>

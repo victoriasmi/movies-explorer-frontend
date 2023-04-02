@@ -7,9 +7,12 @@ const {
 export default function MoviesCardList(props) {
 
   const [moviesPerPage, setmoviesPerPage] = useState([]);
+  const [movieIsSaved, setMovieIsSaved] = useState([]);
   const [moviesToCut, setMoviesToCut] = useState([]);
   const [moviesWithPagination, setMoviesWithPagination] = useState([]);
   const [isLoadButtonActive, setIsLoadButtonActive] = useState(false);
+
+  console.log(props.movies);
 
 
   useEffect(() => {
@@ -44,6 +47,16 @@ export default function MoviesCardList(props) {
     } else setIsLoadButtonActive(false);
   }, [moviesPerPage, moviesToCut]);
 
+  useEffect(() => {
+    console.log(props.loggedIn);
+    if (props.loggedIn === false){
+      console.log("незалогинен");
+      setMoviesToCut([]);
+      setMoviesWithPagination([]);
+      setIsLoadButtonActive(false);
+    }
+  }, [props.loggedIn]);
+
   return (
     <>
       <ul className="elements">
@@ -51,6 +64,7 @@ export default function MoviesCardList(props) {
           <MovieCard
             key={movie._id}
             movie={movie}
+            movieIsSaved={movieIsSaved}
             onSave={props.onSave}
             onDelete={props.onDelete}
             savedMovies={props.savedMovies}

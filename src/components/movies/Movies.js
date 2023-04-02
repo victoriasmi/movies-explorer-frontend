@@ -35,6 +35,7 @@ export default function Movies(props) {
           onDelete={props.onDelete}
           savedMovies={props.savedMovies}
           moviesFromStorage={props.moviesFromStorage}
+          loggenIn={props.loggenIn}
         />
       </section>
     </main>
