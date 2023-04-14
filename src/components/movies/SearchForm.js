@@ -1,29 +1,48 @@
-import React from 'react';
-import FilterCheckbox from './FilterCheckbox';
+import React, { useState, useEffect } from 'react';
 import searchIcon from '../../images/search.svg'
-// import editAvatarPic from "../images/edit_button.svg"
-// import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 export default function SearchForm(props) {
 
-  // const currentUser = React.useContext(CurrentUserContext);
+  const [input, setInput] = useState("");
+
+  function handleInputChange(e) {
+    setInput(e.target.value);
+    console.log(input);
+  };
+  console.log(input);
+
+  function handleFilter(e) {
+    e.preventDefault()
+    props.onFilter(input);
+    localStorage.setItem("input", input);
+  };
+
+  useEffect(() => {
+    const inputFromStorage = localStorage.getItem("input");
+    setInput(inputFromStorage);
+    console.log(inputFromStorage);
+  }, [setInput]);
 
   return (
-    // <section className="content">
     <div className="search">
       <form className="search-form">
         <div className="search__block-input">
           <img className="search__icon" src={searchIcon} alt="поиск"></img>
-          <input className="search__input" id="movie-input" type="movie" name="movie"
-            minLength="2" maxLength="30" placeholder="Фильм" required />
+          <input 
+          className="search__input" 
+          id="movie-input" 
+          type="movie" 
+          name="movie"
+          minLength="2" 
+          maxLength="30" 
+          placeholder="Фильм" 
+          value={input ?? ""} 
+          onInput={handleInputChange} 
+          disabled={!props.isLoaded}
+          required />
         </div>
-        {/* value={email ?? ""} onChange={handleEmailChange} required /> */}
-        {/* <span className="movie-input-error error"></span> */}
-        <button className="search-form__search-button" type="submit"></button>
+        <button className="search-form__search-button" type="submit" onClick={handleFilter} ></button>
       </form>
-      {/* <FilterCheckbox /> */}
     </div>
-    // </section>
   );
-
 }

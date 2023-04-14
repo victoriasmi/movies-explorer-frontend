@@ -1,37 +1,37 @@
-import React from 'react';
-import MovieCard from '../movies/MoviesCard';
-import SearchForm from '../movies/SearchForm';
-import FilterCheckbox from '../movies/FilterCheckbox';
-// import editAvatarPic from "../images/edit_button.svg"
-// import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import React, { useState, useEffect } from 'react';
+import SavedMoviesCardList from './SavedMoviesCardList';
+import SavedSearchForm from '../savedMovies/SavedSearchForm';
+import SavedFilterCheckbox from '../savedMovies/SavedFilterCheckbox';
+// import Preloader from './Preloader';
 
 export default function SavedMovies(props) {
-
-  // const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <main className="movies">
       <div className="movies__finder">
-        <SearchForm />
-        <FilterCheckbox />
+        <SavedSearchForm
+          onSavedFilter={props.onSavedFilter}
+          isSavedLoaded={props.isSavedLoaded}
+        />
+        <SavedFilterCheckbox
+          onSavedFilterCheckBox={props.onSavedFilterCheckBox}
+        />
       </div>
+      <div className={`error__filter ${props.isSavedFilterError && "error__filter_type_active"}`}>
+        <h1 className="error__filter-text">Ничего не найдено</h1>
+      </div>
+      {/* <section className="proloader__box">
+        <Preloader />
+      </section> */}
       <section className="">
-        <ul className="elements">
-          {/* {props.movie.map((movie) => ( */}
-          <MovieCard
-          // key={movie._id}
-          // movie={movie}
-          // onCardClick={props.onCardClick}
-          // onCardLike={props.onCardLike}
-          // onCardRemoveLike={props.onCardRemoveLike}
-          // onCardDelete={props.onCardDelete}
-          />
-        </ul>
-      </section>
-      <section className="loader">
-        <button className="loader__load-button" type="button">Еще</button>
+        <SavedMoviesCardList
+          isSavedFilterError={props.isSavedFilterError}
+          savedMovies={props.savedMovies}
+          savedMoviesAfterFilters={props.savedMoviesAfterFilters}
+          onSavedFilterCheckBox={props.onSavedFilterCheckBox}
+          onDelete={props.onDelete}
+        />
       </section>
     </main>
   );
-
 }

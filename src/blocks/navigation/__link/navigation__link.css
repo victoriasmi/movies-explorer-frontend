@@ -16,12 +16,10 @@
   padding: 0;
 }
 
-/* @media (max-width: 768px) {
-  .navigation__link {
-    height: 36px;
-    width: 96px;
+  .navigation__link:hover {
+    opacity: 0.6;
+    transition: 0.2 ease-out;
   }
-} */
 
 @media (max-width: 480px) {
   .navigation__link {

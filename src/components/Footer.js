@@ -1,4 +1,5 @@
 import { Link, Route, Switch } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
 
 export default function Footer() {
   return (
@@ -9,8 +10,8 @@ export default function Footer() {
       <div className="footer__bottom">
         <p className="footer__year">&copy; 2023</p>
         <div className="footer__links">
-          <Link className="footer__link" to="https://practicum.yandex.ru/">Яндекс.Практикум</Link> 
-          <Link className="footer__link" to="https://github.com/victoriasmi">Github</Link>
+          <Link className="footer__link" to="https://practicum.yandex.ru/" target={"_blank"}>Яндекс.Практикум</Link> 
+          <Link className="footer__link" to="https://github.com/victoriasmi" target={"_blank"}>Github</Link>
         </div>
       </div>
     </footer>

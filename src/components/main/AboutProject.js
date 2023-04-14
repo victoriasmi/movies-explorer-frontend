@@ -7,7 +7,7 @@ export default function AboutProject(props) {
   // const currentUser = React.useContext(CurrentUserContext);
 
   return (
-      <section className="content__container">
+      <section className="content__container" id="about-project">
         <div className="content__header">
           <h1 className="content__header-text">О проекте</h1>
         </div>

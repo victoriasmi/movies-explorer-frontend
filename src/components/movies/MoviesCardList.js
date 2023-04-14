@@ -1,25 +1,92 @@
-import React from 'react';
-import Movie from './Movie';
-// import editAvatarPic from "../images/edit_button.svg"
-// import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import React, { useState, useEffect } from 'react';
+import MovieCard from './MoviesCard';
+const {
+  bigScreenMovies, mediumScreenMovies, smallScreenMovies
+} = require('../../constants');
 
 export default function MoviesCardList(props) {
 
-  // const currentUser = React.useContext(CurrentUserContext);
+  const [moviesPerPage, setmoviesPerPage] = useState([]);
+  const [movieIsSaved, setMovieIsSaved] = useState([]);
+  const [moviesToCut, setMoviesToCut] = useState([]);
+  const [moviesWithPagination, setMoviesWithPagination] = useState([]);
+  const [isLoadButtonActive, setIsLoadButtonActive] = useState(false);
+
+  // console.log(props.movies);
+
+  useEffect(() => {
+    if (props.movies.length !== 0) {
+      setMoviesToCut(props.movies);
+    }
+    else if (props.movies.length === 0) {
+      if (localStorage.getItem("searchQueryResult") !== null) {
+        const resultFromStorage = JSON.parse(localStorage.getItem("searchQueryResult"));
+        setMoviesToCut(resultFromStorage);
+      }
+    }
+  }, [props]);
+
+  const page = document.querySelector(".page");
+  const observer = new ResizeObserver(entries => {
+    const pageElement = entries[0];
+    if (pageElement.contentRect.width >= 1280) {
+      setmoviesPerPage(bigScreenMovies);
+    } else if (pageElement.contentRect.width >= 678) {
+      setmoviesPerPage(mediumScreenMovies);
+    } else setmoviesPerPage(smallScreenMovies);
+  });
+
+  setTimeout(() => { observer.observe(page) }, 200)
+
+  useEffect(() => {
+    const pagination = moviesToCut.slice(0, moviesPerPage);
+    setMoviesWithPagination(pagination);
+    if (moviesToCut.length > moviesPerPage) {
+      setIsLoadButtonActive(true);
+    } else setIsLoadButtonActive(false);
+  }, [moviesPerPage, moviesToCut]);
+
+  useEffect(() => {
+    console.log(props.loggedIn);
+    if (props.loggedIn === false){
+      // console.log("незалогинен");
+      setMoviesToCut([]);
+      setMoviesWithPagination([]);
+      setIsLoadButtonActive(false);
+    }
+  }, [props.loggedIn]);
 
   return (
+    <>
       <ul className="elements">
-        {props.movies.map((movie) => (
-          <Movie
+        {moviesWithPagination.map((movie) => (
+          <MovieCard
             key={movie._id}
             movie={movie}
-            // onCardClick={props.onCardClick}
-            // onCardLike={props.onCardLike}
-            // onCardRemoveLike={props.onCardRemoveLike}
-            // onCardDelete={props.onCardDelete}
+            movieIsSaved={movieIsSaved}
+            onSave={props.onSave}
+            onDelete={props.onDelete}
+            savedMovies={props.savedMovies}
+            movies={props.movies}
           />
         ))
         }
       </ul>
+      <div className="loader">
+        <button className={`loader__load-button ${isLoadButtonActive && "loader__load-button_type_active"}`} type="button"
+          onClick={
+            function Pagination() {
+              Array.prototype.diff = function (a) {
+                return this.filter(function (i) { return a.indexOf(i) < 0; });
+              };
+              const newPagination = moviesToCut.diff(moviesWithPagination);
+              const newPaginationSliced = newPagination.slice(0, moviesPerPage);
+              setMoviesWithPagination(moviesWithPagination.concat(newPaginationSliced));
+              if (newPagination.length <= moviesPerPage) {
+                setIsLoadButtonActive(false);
+              }
+            }} >Еще</button>
+      </div>
+    </>
   );
 }

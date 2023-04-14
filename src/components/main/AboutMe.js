@@ -12,7 +12,8 @@ export default function AboutMe(props) {
 
   return (
     <>
-      <section className="content__container">
+    <section id="about-me">
+      <div className="content__container">
         <div className="content__header">
           <h1 className="content__header-text">Студент</h1>
         </div>
@@ -21,10 +22,11 @@ export default function AboutMe(props) {
           <h1 className="about-me__name">Виктория</h1>
           <p className="about-me__occupation">Фронтенд-разработчик, 29 лет</p>
           <p className="about-me__about">Начинающий front-end разработчик с опытом более 7 лет в продуктовом менеджменте, аналитике, маркетинге, исследованиях. Увлекаюсь дизайном.</p>
-          <Link className="about-me__link" to="https://github.com/victoriasmi">Github</Link>
+          <Link className="about-me__link" to="https://github.com/victoriasmi"  target="_blank" rel="noreferrer noopener">Github</Link>
         </div>
         <img className="about-me__photo" src={profilePic} alt='фото-профиля' />
         </div>
+      </div>
       </section>
       <Portfolio />
     </>

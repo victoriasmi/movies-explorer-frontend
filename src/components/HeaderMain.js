@@ -32,7 +32,7 @@ export default function HeaderMain(props) {
     <div>
       <header className="header">
         <div className="header__navi">
-          <Link to="/" src={logo} alt="логотип"><img className="header__logo" to="/" src={logo} alt="логотип" /></Link>
+          <Link to="/" src={logo} alt="логотип"><img className="header__logo" src={logo} alt="логотип" /></Link>
           <div className="header__movies">
             <Link className="header__link" to="/movies">Фильмы</Link>
             <Link className="header__link" to="/saved-movies">Сохраненные фильмы</Link>

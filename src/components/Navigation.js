@@ -5,9 +5,6 @@ import { Link, Route, Routes, Outlet } from "react-router-dom";
 
 export default function Navigation(props) {
 
-  // console.log(props.onClose); 
-  console.log(props);
-
   return (
     // <div className={`menu menu_opened`}>
     <div className={`menu ${props.isOpen && "menu_opened"}`}>

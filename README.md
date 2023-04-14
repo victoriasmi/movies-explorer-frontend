@@ -4,7 +4,7 @@
 
 * Описание проекта и его функциональности
 * Используемые технологии
-* Ссылка на Дизайн 
+* Полезные ссылки
 
 
 **Описание проекта и его функциональности**
@@ -15,12 +15,10 @@
 
 HTML, CSS, JS, React, BEM
 
-**Ссылка**
+**Ссылки**
 
-Ссылка на [Yandex Disk](https://disk.yandex.com/d/5LGV3P0eH0xshA) , где лежит макет 
-
-Ссылка на [Front](https://diploma.project.nomoredomains.rocks)
-
-Ссылка на [Back](https://api.diploma.project.nomoredomains.rocks)
-
+Ссылка на макет [Yandex Disk](https://disk.yandex.com/d/5LGV3P0eH0xshA)
+Ссылка на [frontend](https://diploma.project.nomoredomains.rocks)
 Ссылка на [Pull Request](https://github.com/victoriasmi/movies-explorer-frontend/pull/3)
+Ссылка на [backend](https://api.diploma.project.nomoredomains.rocks)
+Публичный api 158.160.46.247

@@ -30,7 +30,6 @@ class MoviesApi {
       //   return data;
       // })
   }
-
 }
 
 export const moviesApi = new MoviesApi({
