@@ -20,8 +20,7 @@ The Main page serves as Project description and Portfolio. Once registered the u
 * profile editing functions
 * movie search by text input
 * movies can be filtered by length (short films filter)
-* movies can be filtered by length (short films filter)
-* saved movies page containing the movies current user saved with both search/filter and edition functions 
+* saved movies page containing the movies current user saved with both search/filter and editing functions 
 
 **Technologies**
 
