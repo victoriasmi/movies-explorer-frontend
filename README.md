@@ -4,6 +4,8 @@
 * About Project
 * Project functionality
 * Technologies
+* Instructions
+* System requirements 
 <img width="569" alt="Снимок экрана 2023-04-18 в 00 51 38" src="https://user-images.githubusercontent.com/63603457/232523392-dff0f8cf-8a6e-44c6-b0b2-cb25d60be0f0.png">
 
 
@@ -34,3 +36,18 @@ The Main page serves as Project description and Portfolio. Once registered the u
 * Hooks (useState, useEffect, useContext) 
 * MongoDB
 * BEM
+
+**Instructions**
+
+* The project is avaliable via [link](https://diploma.project.nomoredomains.rocks)
+* In order to launch locally:\
+Step 1: create project folder locally, cd <folder-name>\
+Step 2: clone [private API](https://github.com/victoriasmi/movies-explorer-api) repository\
+Step 3: clone [front-end](https://github.com/victoriasmi/movies-explorer-frontend) repository\
+Step 4: install dependencies, e.g. use npm install\
+Step 5: launch API on local machine, port 3000\
+Step 6: launch front-end on local machine, port 3001\
+
+**System requirements**
+
+Node.js v16.17.0
