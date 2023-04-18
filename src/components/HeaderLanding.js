@@ -19,8 +19,8 @@ export default function HeaderLanding() {
           <Link to="/" src={logo} alt="логотип"><img className="header__logo" src={logo} alt="логотип"/></Link>
           </div>
           <div className="header__auth">
-            <Link className="header__register" to="/signup">Регистрация</Link>
-            <Link className="header__login" to="/signin">Войти</Link>
+            <Link className="header__register" to="/signup">Register</Link>
+            <Link className="header__login" to="/signin">Log in</Link>
           </div>
       </header>
     </div>

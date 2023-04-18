@@ -7,14 +7,14 @@ export default function Techs(props) {
   // const currentUser = React.useContext(CurrentUserContext);
 
   return (
-    <section className="content__container content__container_type_grey" id="technologies">
+    <section className="content__container content__container_type_grey" ref={props.refAboutTech}>
       <div className="tech__container">
         <div className="content__header">
-          <h1 className="content__header-text">Технологии</h1>
+          <h1 className="content__header-text">Technologies</h1>
         </div>
         <div className="techs__block-main">
-          <h1 className="techs__title">7 технологий</h1>
-          <p className="techs__subtitle">На курсе веб-разработки мы освоили технологии, которые применили в дипломном проекте.</p>
+          <h1 className="techs__title">7 Technologies</h1>
+          <p className="techs__subtitle">The following technologies were used in the Graduation Project.</p>
         </div>
         <div className="techs__block-list">
           <p className="techs__list-element">HTML</p>

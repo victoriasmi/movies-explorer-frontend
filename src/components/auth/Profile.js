@@ -62,10 +62,10 @@ export default function Profile(props) {
         updateErr={props.updateErr}
       />
       <main className="profile">
-        <h1 className="profile__title">Привет, {currentUser.name}!</h1>
+        <h1 className="profile__title">Hello, {currentUser.name}!</h1>
         <form className="profile__info" onSubmit={handleSubmit(handleProfileUpdate)}>
           <div className="profile__info-block">
-            <label className="profile__form-title">Имя</label>
+            <label className="profile__form-title">Name</label>
             <input 
             className="profile__form-info profile__form-info_type_active" 
             name="name" 
@@ -73,21 +73,21 @@ export default function Profile(props) {
             disabled={props.isLoading} 
             onInput={handleNameChange}
               {...register('name', {
-                required: 'Это поле не может быть пустым',
+                required: 'This field can not be empty',
                 minLength: {
                   value: 2,
-                  message: "Минимум 2 символа"
+                  message: "Please enter at least 2 characters"
                 },
                 maxLength: {
                   value: 20,
-                  message: "Максимум 20 символов"
+                  message: "Please enter up to 20 characters"
                 },
               })}
             />
           </div>
-          <span className="error">{errors?.name && <p>{errors?.name?.message || "Ошибка ввода"}</p>}</span>
+          <span className="error">{errors?.name && <p>{errors?.name?.message || "Name is invalid"}</p>}</span>
           <div className="profile__info-block">
-            <label className="profile__form-title">E-mail</label>
+            <label className="profile__form-title">Email</label>
             <input 
             className="profile__form-info profile__form-info_type_active" 
             name="email" 
@@ -96,18 +96,18 @@ export default function Profile(props) {
             disabled={props.isLoading} 
               //  value={email ?? ""} onChange={()=> reset({ name: name })}  defaultValue={currentUser.email ?? ""}
               {...register('email', {
-                required: 'Это поле не может быть пустым',
+                required: 'This field can not be empty',
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: 'Поле email заполнено неправильно',
+                  message: 'Email address is invalid',
                 },
               })}
             />
           </div>
-          <span className="error">{errors?.email && <p>{errors?.name?.message || "Ошибка ввода"}</p>}</span>
+          <span className="error">{errors?.email && <p>{errors?.name?.message || "Email is invali"}</p>}</span>
           <div className="profile__links">
-            <button className={`profile__link ${isUpdated && "profile__link_type_active"}`} type="submit" disabled={!isUpdated}>Редактировать</button>
-            <Link to="/" className="profile__link profile__link_type_red" onClick={handleLogOut}>Выйти из аккаунта</Link>
+            <button className={`profile__link ${isUpdated && "profile__link_type_active"}`} type="submit" disabled={!isUpdated}>Edit</button>
+            <Link to="/" className="profile__link profile__link_type_red" onClick={handleLogOut}>Log out</Link>
           </div>
         </form>
       </main>

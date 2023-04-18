@@ -37,7 +37,7 @@ export default function MoviesCard(props) {
     const rhours = Math.floor(hours);
     const minutes = (hours - rhours) * 60;
     const rminutes = Math.round(minutes);
-    const newDuration = rhours + "ч " + rminutes + "м ";
+    const newDuration = rhours + " h " + rminutes + " мin ";
     return newDuration;
   }
 
@@ -46,7 +46,7 @@ export default function MoviesCard(props) {
       <li className="element">
         <div className="element__top">
           <div className="element__text">
-            <h2 className="element__title">{props.movie.nameRU}</h2>
+            <h2 className="element__title">{props.movie.nameEN}</h2>
             <p className="element__duration">{calcDuration()}</p>
           </div>
           <button className={movieSaveButtonClassName} type="button" onClick={isSaved ? handleDeleteClick : handleSaveClick}></button>

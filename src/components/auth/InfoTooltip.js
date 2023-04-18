@@ -8,8 +8,8 @@ export default function InfoTooltip({ isOpen, onClose, isSuccess, updateErr }) {
 
   function checkErrText(){
     if (updateErr.includes(409)){
-      setErrText("Пользователь с таким email уже существует");
-    } else setErrText("Что-то пошло не так, попробуйте еще раз.");
+      setErrText("Email already exists");
+    } else setErrText("Something went wrong, please try again.");
   };
 
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function InfoTooltip({ isOpen, onClose, isSuccess, updateErr }) {
             alt={isSuccess ? "Успех" : "Неудача" }
           />
           <p className="popup__title popup__title_type_info-tool-tip">
-            {isSuccess ? "Успех!" : errText }
+            {isSuccess ? "Success!" : errText }
           </p>
         </form>
       </div>

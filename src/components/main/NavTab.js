@@ -6,13 +6,24 @@ import { Link } from "react-router-dom";
 
 export default function NavTab(props) {
 
-  // const currentUser = React.useContext(CurrentUserContext);
+  const scrollToSection = (elementRef) =>{
+    window.scrollTo({
+      top: elementRef.current.offsetTop,
+      behavior: "smooth"
+    })
+  }
+
+  console.log(props);
+
+  // refAboutMe={props.refAboutMe}
+  // refAboutTech={props.refAboutTech}
+  // refAboutProject={props.refAboutProject}
 
   return (
        <ul className="navigation">
-        <Link className="navigation__link" to="about-project">О проекте</Link>
-        <Link className="navigation__link" to="technologies">Технологии</Link>
-        <Link className="navigation__link" to="about-me">Студент</Link>
+        <div className="navigation__link" onClick={()=>scrollToSection(props.refAboutProject)} >About project</div>
+        <div className="navigation__link" onClick={()=>scrollToSection(props.refAboutTech)} >Technologies</div>
+        <div className="navigation__link" onClick={()=>scrollToSection(props.refAboutMe)} >About creator</div>
       </ul>
   );
 }

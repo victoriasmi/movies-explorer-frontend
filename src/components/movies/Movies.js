@@ -23,11 +23,11 @@ export default function Movies(props) {
         />
       </section>
       <div className={`error__filter ${props.isError && "error__filter_type_active"}`}>
-        <h1 className="error__filter-text">Ничего не найдено</h1>
+        <h1 className="error__filter-text">Nothing found</h1>
       </div>
       <div className={`error__filter ${props.isFetchError && "error__filter_type_active"}`}>
-        <h1 className="error__filter-text">Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. 
-        Подождите немного и попробуйте ещё раз</h1>
+        <h1 className="error__filter-text">An error occured while processing your request. There was a problem connecting to the server. 
+        Please try again later.</h1>
       </div>
       <section className="">
         <MoviesCardList

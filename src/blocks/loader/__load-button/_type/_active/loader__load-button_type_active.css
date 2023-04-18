@@ -1,4 +1,8 @@
 .loader__load-button_type_active {
-  visibility: visible;
   display: block;
+}
+
+.loader__load-button_type_active:hover {
+  opacity: 0.8;
+  transition: 2s ease-out;
 }

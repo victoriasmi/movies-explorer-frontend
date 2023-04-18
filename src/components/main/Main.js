@@ -14,10 +14,20 @@ export default function Main(props) {
 
   return (
     <main className="content">
-      <Promo/>
-      <AboutProject/>
-      <Techs/>
-      <AboutMe/>
+      <Promo
+        refAboutMe={props.refAboutMe}
+        refAboutTech={props.refAboutTech}
+        refAboutProject={props.refAboutProject}
+      />
+      <AboutProject
+        refAboutProject={props.refAboutProject}
+      />
+      <Techs
+        refAboutTech={props.refAboutTech}
+      />
+      <AboutMe
+        refAboutMe={props.refAboutMe}
+      />
     </main>
   );
 

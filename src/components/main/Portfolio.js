@@ -11,23 +11,23 @@ export default function Portfolio(props) {
   return (
     <section className="portfolio">
       {/* <div className="portfolio__wrapper"> */}
-      <p className="portfolio__title">Портфолио</p>
+      <p className="portfolio__title">Portfolio</p>
       <ul className="portfolio__links">
         <li className="portfolio__block">
-          <Link className="portfolio__block-link" to="https://github.com/victoriasmi" target="_blank" rel="noreferrer noopener">
-            <p className="portfolio__link">Статичный сайт</p>
+          <Link className="portfolio__block-link" to="https://github.com/victoriasmi/how-to-learn" target="_blank" rel="noreferrer noopener">
+            <p className="portfolio__link">Static website</p>
             <img className="portfolio__arrow-button" src={arrow} alt="стрелка" />
           </Link>
         </li>
         <li className="portfolio__block">
-          <Link className="portfolio__block-link" to="https://github.com/victoriasmi" target="_blank" rel="noreferrer noopener">
-            <p className="portfolio__link">Адаптивный сайт</p>
+          <Link className="portfolio__block-link" to="https://github.com/victoriasmi/russian-travel" target="_blank" rel="noreferrer noopener">
+            <p className="portfolio__link">Dynamic website</p>
             <img className="portfolio__arrow-button" src={arrow} alt="стрелка" />
           </Link>
         </li>
         <li className="portfolio__block">
-          <Link className="portfolio__block-link" to="https://github.com/victoriasmi" target="_blank" rel="noreferrer noopener">
-            <p className="portfolio__link">Одностраничное приложение</p>
+          <Link className="portfolio__block-link" to="https://github.com/victoriasmi/react-mesto-api-full" target="_blank" rel="noreferrer noopener">
+            <p className="portfolio__link">Single-page application</p>
             <img className="portfolio__arrow-button" src={arrow} alt="стрелка" />
           </Link>
         </li>

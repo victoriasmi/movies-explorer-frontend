@@ -29,7 +29,7 @@ export default function SavedSearchForm(props) {
           name="saved-movie"
           minLength="2" 
           maxLength="30" 
-          placeholder="Фильм" 
+          placeholder="Movie" 
           value={savedInput} 
           disabled={!props.isSavedLoaded}
           onChange={handleSavedInputChange} 
