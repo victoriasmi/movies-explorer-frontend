@@ -42,19 +42,19 @@ export default function Register(props) {
       <div className="auth">
         <div className="auth__container">
           <Link to="/" src={logo} className="auth__logo" alt="логотип"><img src={logo} alt="логотип" /></Link>
-          <p className="auth__title ">Добро пожаловать!</p>
+          <p className="auth__title ">Welcome!</p>
           <form className="auth__form auth__form_type_register" onSubmit={handleSubmit(handleRegister)}>
-            <p className="auth__input-title">Имя</p>
+            <p className="auth__input-title">Name</p>
             <input className="auth__input auth__input_type_register" id="name-input" type="text" name="username" value={name ?? ""} onInput={handleNameChange}
               {...register('username', {
-                required: 'Поле не может быть пустым',
+                required: 'This field can not be empty',
                 minLength: {
                   value: 2,
-                  message: "Минимум 2 символа"
+                  message: "Please enter at least 2 characters"
                 },
                 maxLength: {
                   value: 10,
-                  message: "Максимум 10 символов"
+                  message: "Please enter up to 10 characters"
                 },
                 pattern: {
                   value: /^[ А-ЯA-Zh-]+$/umi,
@@ -66,33 +66,33 @@ export default function Register(props) {
             <p className="auth__input-title">E-mail</p>
             <input className="auth__input auth__input_type_register" id="email-input" type="text" name="email" value={email ?? ""} onInput={handleEmailChange}
               {...register('email', {
-                required: 'Поле не может быть пустым',
+                required: 'This field can not be empty',
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: 'Поле email заполнено неправильно',
+                  message: 'Please enter valid email address',
                 },
               })}
             />
             <span className="error">{errors?.email && errors.email.message}</span>
-            <p className="auth__input-title">Пароль</p>
+            <p className="auth__input-title">Password</p>
             <input className="auth__input auth__form_type_register" id="password-input" type="password" name="password" value={password ?? ""} onInput={handlePasswordChange}
               {...register('password', {
-                required: 'Поле не может быть пустым',
+                required: 'This field can not be empty',
                 minLength: {
                   value: 6,
-                  message: "Минимум 6 символов"
+                  message: "Please enter at least 6 characters"
                 },
                 maxLength: {
                   value: 10,
-                  message: "Максимум 10 символов"
+                  message: "Please enter up to 10 characters"
                 },
               })}
             />
             <span className="error">{errors?.password && errors.password.message}</span>
-            <button className="auth__button auth__button_type_register" type="submit">Зарегистрироваться</button>
+            <button className="auth__button auth__button_type_register" type="submit">Register</button>
             <div className="auth__change-type">
-              <p className="auth__change-type-text">Уже зарегистрированы?&nbsp;</p>
-              <Link to="/signin" className="auth__change-type-link">Войти</Link>
+              <p className="auth__change-type-text">Already registered?&nbsp;</p>
+              <Link to="/signin" className="auth__change-type-link">Log in</Link>
             </div>
           </form>
         </div>

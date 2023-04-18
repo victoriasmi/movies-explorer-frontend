@@ -8,8 +8,8 @@ export default function ErrorPage() {
       <div className="error-page">
         <div className='error-page__container'>
           <h1 className="error-page__error-number">404</h1>
-          <p className="error-page__error-text">Страница не найдена</p>
-          <Link to="/" className="error-page__link-back">Назад</Link>
+          <p className="error-page__error-text">Page not found</p>
+          <Link to="/" className="error-page__link-back">Go back</Link>
         </div>
       </div>
     </>

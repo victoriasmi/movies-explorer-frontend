@@ -67,7 +67,7 @@ class Auth {
 }
 
 export const auth = new Auth({
-  // baseUrl: 'http://localhost:3000',
-  baseUrl: 'https://api.diploma.project.nomoredomains.rocks',
+  baseUrl: 'http://localhost:3000',
+  // baseUrl: 'https://api.diploma.project.nomoredomains.rocks',
 });
 

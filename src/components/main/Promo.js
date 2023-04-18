@@ -9,12 +9,16 @@ export default function Promo(props) {
 
   return (
     <section className="promo">
-    <div className="promo-banner">
-      <p className="promo-banner__text">Учебный проект студента факультета Веб-разработки.</p>
-      <div className="navigation">
-        <NavTab />
+      <div className="promo-banner">
+        <p className="promo-banner__text">Graduation Project. <br></br>DocuFilms: explore the best documentaries.</p>
+        <div className="navigation">
+          <NavTab
+            refAboutMe={props.refAboutMe}
+            refAboutTech={props.refAboutTech}
+            refAboutProject={props.refAboutProject}
+          />
+        </div>
       </div>
-    </div>
     </section>
   );
 

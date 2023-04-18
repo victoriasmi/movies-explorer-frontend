@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Routes, Route, Link, useNavigate, useLocation } from "react-router-dom";
 import HeaderMain from '../HeaderMain';
 import HeaderLanding from '../HeaderLanding';
@@ -41,6 +41,16 @@ export default function App() {
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [updateErr, setUpdateErr] = useState("");
   const navigate = useNavigate();
+  const aboutProject = useRef(null);
+  const aboutTech = useRef(null);
+  const aboutMe = useRef(null);
+
+  // const scrollToSection = (elementRef) =>{
+  //   window.scrollTo({
+  //     top: elementRef.current.offsetTop,
+  //     behavior: "smooth"
+  //   })
+  // }
 
   function handleRegisterSubmit(name, email, password) {
     setIsLoading(true);
@@ -178,7 +188,7 @@ export default function App() {
     setIsLoaded(false);
     // console.log("получили query из поиска");
     handleFilterCheckbox();
-    const result = movies.filter(movie => movie.nameRU.toLowerCase().includes(query.toLowerCase()));
+    const result = movies.filter(movie => movie.nameEN.toLowerCase().includes(query.toLowerCase()));
     if (isChecked) {
       const shortFilms = result.filter(movie => movie.duration <= shortFilmDuration);
       setfilteredMovies(shortFilms);
@@ -261,7 +271,7 @@ export default function App() {
     handleSavedFilterCheckbox();
     // console.log(isCheckedSaved);
     const savedFilteredMovies = savedMovies.filter(movie => {
-      return movie.nameRU.toLowerCase().includes(e.toLowerCase())
+      return movie.nameEN.toLowerCase().includes(e.toLowerCase())
     });
     if (savedFilteredMovies.length === 0) {
       setIsSavedFilterError(true);
@@ -315,13 +325,21 @@ export default function App() {
 
           <Route path="/" element={
             loggedIn ?
-              <> <HeaderMain /> <Main /> <Footer /> </>
+              <> <HeaderMain /> <Main
+              refAboutMe={aboutMe}
+              refAboutTech={aboutTech}
+              refAboutProject={aboutProject}
+              /> <Footer /> </>
               :
-              <> <HeaderLanding /> <Main /> <Footer /> </>}>
+              <> <HeaderLanding /> <Main
+              refAboutMe={aboutMe}
+              refAboutTech={aboutTech}
+              refAboutProject={aboutProject}
+              /> <Footer /> </>}>
             <Route index element={<Promo />} />
-            <Route path="about-project" element={<AboutProject />} />
-            <Route path="technologies" element={<Techs />} />
-            <Route path="about-me" element={<AboutMe />} />
+            <Route element={<AboutProject />} />
+            <Route element={<Techs />} />
+            <Route element={<AboutMe />} />
           </Route>
           <Route path="/profile" element={
             <RequireAuth>

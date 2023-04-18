@@ -18,7 +18,7 @@ export default function SavedMovies(props) {
         />
       </div>
       <div className={`error__filter ${props.isSavedFilterError && "error__filter_type_active"}`}>
-        <h1 className="error__filter-text">Ничего не найдено</h1>
+        <h1 className="error__filter-text">Nothing found</h1>
       </div>
       {/* <section className="proloader__box">
         <Preloader />

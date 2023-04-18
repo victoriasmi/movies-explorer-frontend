@@ -35,7 +35,7 @@ export default function SearchForm(props) {
           name="movie"
           minLength="2" 
           maxLength="30" 
-          placeholder="Фильм" 
+          placeholder="Movie" 
           value={input ?? ""} 
           onInput={handleInputChange} 
           disabled={!props.isLoaded}

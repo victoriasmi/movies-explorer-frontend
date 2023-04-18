@@ -12,7 +12,7 @@ export default function MoviesCardList(props) {
   const [moviesWithPagination, setMoviesWithPagination] = useState([]);
   const [isLoadButtonActive, setIsLoadButtonActive] = useState(false);
 
-  // console.log(props.movies);
+  console.log(props.movies);
 
   useEffect(() => {
     if (props.movies.length !== 0) {
@@ -85,7 +85,7 @@ export default function MoviesCardList(props) {
               if (newPagination.length <= moviesPerPage) {
                 setIsLoadButtonActive(false);
               }
-            }} >Еще</button>
+            }} >Load more</button>
       </div>
     </>
   );

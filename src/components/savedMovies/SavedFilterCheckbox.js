@@ -23,7 +23,7 @@ export default function SavedFilterCheckbox(props) {
     <>
       <div className="filter-checkbox">
         <button className={`filter-checkbox__button ${isChecked && "filter-checkbox__button_type_active"}` } type="checkbox" onClick={isChecked? handleCheckAndClick : handleCheckClick}></button>
-        <p className="filter-checkbox__title">Короткометражки</p>
+        <p className="filter-checkbox__title">Short films</p>
       </div>
     </>
   );
