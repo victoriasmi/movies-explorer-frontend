@@ -32,6 +32,7 @@ The Main page serves as Project description and Portfolio. Once registered the u
 * React Router
 * Redux
 * Express.js
+* Nginx
 * API: public(BeatFilms) & private 
 * Hooks (useState, useEffect, useContext) 
 * MongoDB
